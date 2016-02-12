@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jump.game.screens.GameScreen;
 
+//No, evan you were not
 public class MainGame extends Game{
 	SpriteBatch batch;
 	
