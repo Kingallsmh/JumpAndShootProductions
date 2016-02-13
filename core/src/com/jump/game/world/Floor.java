@@ -8,6 +8,7 @@ package com.jump.game.world;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 /**
  *
@@ -20,8 +21,12 @@ public class Floor extends Objects{
     public Floor(float x, float y){
         this.x = x;
         this.y = y;
+        this.width = 64;
+        this.height = 32;
         this.testSheet = new Texture("TestTile.png");
-        this.pic = new TextureRegion(testSheet, 0, 0, 64, 32);
+        this.pic = new TextureRegion(testSheet, 0, 0, width, height);
+        
+        this.hitbox = new Rectangle(this.x, this.y, this.width, this.height);
     }
     
     @Override

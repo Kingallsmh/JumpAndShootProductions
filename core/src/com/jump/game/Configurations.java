@@ -11,9 +11,9 @@ package com.jump.game;
  */
 public class Configurations {
     
-    public static int screenWidth = 600*2;
-    public static int screenHeight = 340*2;
+    public static int screenWidth = 1200;
+    public static int screenHeight = 680;
     public static int scrollSpeed = 4; //Higher is slower
-    public static int cameraWidth = 600;
-    public static int cameraHeight = 340;
+    public static int cameraWidth = 1200/3;
+    public static int cameraHeight = 680/3;
 }

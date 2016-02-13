@@ -7,28 +7,46 @@ package com.jump.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jump.game.Configurations;
+import com.jump.game.entities.GameCharacter;
+import com.jump.game.entities.TestCharacter;
 import com.jump.game.world.Floor;
 import com.jump.game.world.Objects;
+import com.jump.game.world.Stage;
+import com.jump.game.world.TestStage;
 
 /**
  *
  * @author NSCCSTUDENT
  */
 public class GameScreen implements Screen{
+    //USING FOR TESTING, NOT TO BE IMPLEMENTED IN GAME
+    ShapeRenderer testShapes;
+    BitmapFont testFont;
+    //************************************************
+    
     SpriteBatch batch;
     OrthographicCamera cam;
     Objects floor;
+    Stage test;
+    TestCharacter chara;
 
     public GameScreen(SpriteBatch batch){
+        //Using for testing and debugging
+        testShapes = new ShapeRenderer();
+        testFont = new BitmapFont();
+        
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        floor = new Floor(30, 40);
-        
+        chara = new TestCharacter();
+        test = new TestStage();
     }
     
     @Override
@@ -37,17 +55,33 @@ public class GameScreen implements Screen{
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         cam.update();
 	batch.setProjectionMatrix(cam.combined);
 	batch.begin();
         // Start drawing here
-        
-        
+        test.CalculateCollisions(chara);
+        test.RenderStage(batch);
+        chara.Render(batch, delta);
         
         //Stop drawing
 	batch.end();
+        
+        //Testing for hitboxs is drawn here
+        testShapes.begin(ShapeRenderer.ShapeType.Line);
+        testShapes.setProjectionMatrix(cam.combined);
+        testShapes.setColor(Color.WHITE);
+        testShapes.rect(chara.hitBox.x, chara.hitBox.y, chara.hitBox.width, chara.hitBox.height);
+        testShapes.rect(chara.NCollide.x, chara.NCollide.y, chara.NCollide.width, chara.NCollide.height);
+        testShapes.rect(chara.SCollide.x, chara.SCollide.y, chara.SCollide.width, chara.SCollide.height);
+        testShapes.rect(chara.ECollide.x, chara.ECollide.y, chara.ECollide.width, chara.ECollide.height);
+        testShapes.rect(chara.WCollide.x, chara.WCollide.y, chara.WCollide.width, chara.WCollide.height);
+        
+//        for(Rectangle colArray : mCamp.collisionList){
+//            testing.rect(colArray.x, colArray.y, colArray.width, colArray.height);
+//        }
+        testShapes.end();
     }
 
     @Override

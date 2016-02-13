@@ -18,6 +18,16 @@ public class PlayerController extends MainController{
         
     }
     
+    public void ListenForInput(){
+        PressUp();
+        PressDown();
+        PressLeft();
+        PressRight();
+        PressAction();
+        PressJump();
+        PressFast();
+    }
+    
     @Override
     public void PressUp(){
        this.up = Gdx.input.isKeyPressed(Input.Keys.UP);        
@@ -45,6 +55,14 @@ public class PlayerController extends MainController{
 
     @Override
     public void PressJump() {
-        this.jump = Gdx.input.isKeyPressed(Input.Keys.Z); 
+        this.jump = Gdx.input.isKeyJustPressed(Input.Keys.Z); 
+        this.longJump = Gdx.input.isKeyPressed(Input.Keys.Z); 
     }
+
+    @Override
+    public void PressFast() {
+        this.fast = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
+    }
+    
+    
 }

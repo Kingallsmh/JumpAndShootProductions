@@ -5,6 +5,8 @@
  */
 package com.jump.game.world;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jump.game.entities.GameCharacter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +19,24 @@ public class TestStage extends Stage{
     public TestStage(){
         this.objectList = new ArrayList<Objects>();
         this.name = "Test";
+        for(int i = 0; i < 10; i++){
+            objectList.add(new Floor(i*64, 0));
+        }
+        
     }
     
+    
+    
     @Override
-    public void CalculateCollisions() {
-        
+    public void CalculateCollisions(GameCharacter gChar) {
+            gChar.CollisionDetect(objectList);
+    }
+
+    @Override
+    public void RenderStage(SpriteBatch batch) {
+        for (Objects objectList1 : objectList) {
+            objectList1.RenderObject(batch);
+        }
     }
     
 }

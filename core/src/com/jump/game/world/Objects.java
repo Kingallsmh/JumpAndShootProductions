@@ -16,13 +16,14 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public abstract class Objects {
     public float x, y;
-    Rectangle hitbox;
+    public int width, height;
+    public Rectangle hitbox;
     Texture testSheet;
     TextureRegion pic;
     
     public CollisionProperties collide;
     
-    enum CollisionProperties{
+    public enum CollisionProperties{
         PASSABLE, IMPASSABLE, HARMFUL, HINDERING;
     }
     

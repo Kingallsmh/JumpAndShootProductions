@@ -5,6 +5,8 @@
  */
 package com.jump.game.world;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jump.game.entities.GameCharacter;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +19,6 @@ public abstract class Stage {
     ArrayList<Objects> objectList;
     //ArrayList<entities> entityList;
     
-    public abstract void CalculateCollisions();
-    
+    public abstract void CalculateCollisions(GameCharacter gChar);
+    public abstract void RenderStage(SpriteBatch batch);
 }

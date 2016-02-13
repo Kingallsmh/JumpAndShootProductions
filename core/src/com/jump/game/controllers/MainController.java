@@ -10,8 +10,10 @@ package com.jump.game.controllers;
  * @author NSCCSTUDENT
  */
 public abstract class MainController {
-    boolean up, right, left, down, action, jump;
+    public boolean up, fast, right, left, down, action, jump, longJump;
     
+    public abstract void ListenForInput();
+    public abstract void PressFast();
     public abstract void PressUp();
     public abstract void PressDown();
     public abstract void PressLeft();
