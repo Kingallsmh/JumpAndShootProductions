@@ -35,6 +35,8 @@ public abstract class GameCharacter {
     
     boolean facingLeft = false;
     boolean isInvernable = false;
+    float hitColor = 0.5f;
+    float hitCounter = 0;
     float gravity = 2;
     
     int w = 64;
@@ -62,6 +64,7 @@ public abstract class GameCharacter {
                 Attack();
             }
         }
+        Hit();
         CharacterUpdate(time);
         AnimationLoop(time);
     }
@@ -170,7 +173,23 @@ public abstract class GameCharacter {
         }
     }
     public void Hit(){
-        
+        if(isInvernable){
+            if(hitCounter % 5 == 1){
+                if(hitColor == 1f){
+                    hitColor = 0.5f;
+                }
+                else{
+                    hitColor = 1f;
+                }
+            }
+            if(hitCounter >= 200){
+                hitCounter = 0;
+                isInvernable = false;
+            }
+            else{
+                hitCounter++;
+            }
+        }
     }
     public void Gravity(){
         if(!SHit){
@@ -233,16 +252,37 @@ public abstract class GameCharacter {
                 break;
             }
         }
-        
-        
     }
+    
+    public void EnemyDetect(ArrayList<GameCharacter> enemyList){
+        for(GameCharacter enemy : enemyList){
+            if(hitBox.overlaps(enemy.hitBox)){
+                isInvernable = true;
+                if(WCollide.overlaps(enemy.hitBox)){
+                    xVelocity = Gdx.graphics.getDeltaTime() * 30;
+                    yVelocity = Gdx.graphics.getDeltaTime() * 60;
+                }
+                if(ECollide.overlaps(enemy.hitBox)){
+                    xVelocity = Gdx.graphics.getDeltaTime() * -30;
+                    yVelocity = Gdx.graphics.getDeltaTime() * 60;
+                }
+            }
+        }
+    }
+    
     public void Render(SpriteBatch batch, float delta){
         CharacterLoop(delta);
+        if(isInvernable){
+            batch.setColor(1, 1, 1, hitColor);
+        }
         if(facingLeft){
+           
             batch.draw(currentFrame, x + xAdjust + w + turnOffSet, y + yAdjust, -w, h);
+            
         }
         else{
             batch.draw(currentFrame, x + xAdjust, y + yAdjust);
         }
+        batch.setColor(1, 1, 1, 1f);
     }
 }

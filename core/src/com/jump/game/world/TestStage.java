@@ -35,6 +35,7 @@ public class TestStage extends Stage{
     @Override
     public void CalculateCollisions(GameCharacter gChar) {
             gChar.CollisionDetect(objectList);
+            main.EnemyDetect(enemyList);
     }
 
     @Override
