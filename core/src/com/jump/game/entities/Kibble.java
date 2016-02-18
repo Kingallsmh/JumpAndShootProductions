@@ -1,0 +1,86 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.jump.game.entities;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.jump.game.controllers.AIPassiveController;
+
+/**
+ *
+ * @author NSCCSTUDENT
+ */
+public class Kibble extends GameCharacter{
+    
+    public Kibble(){
+        this.pc = new AIPassiveController();
+        this.speed = 30;
+        this.jump = 150;
+        this.maxXVelocity = 3;
+        this.maxYVelocity = 3;
+        this.x = 50;
+        this.y = 130;
+        // Use image file to figure this out
+        this.width = 11;
+        this.height = 15;
+        this.xAdjust = -27;
+        this.yAdjust = -2;
+        this.turnOffSet = 1;
+        
+        this.hitBox = new Rectangle(x, y, width, height);
+        this.NCollide = new Rectangle(x, y, width, 1);
+        this.SCollide = new Rectangle(x, y, width, 1);
+        this.ECollide = new Rectangle(x, y, 1, height);
+        this.WCollide = new Rectangle(x, y, 1, height);
+        
+        this.hp = 10;
+        
+        this.spriteSheet = new Texture("KibbleSheet.png");
+        this.state = State.JUMP;
+        this.idleFrame = new TextureRegion[4];
+        this.moveFrame = new TextureRegion[3];
+        this.jumpFrame = new TextureRegion[1];
+        
+        for(int i = 0; i < 4; i++){
+            idleFrame[i] = new TextureRegion(spriteSheet, (i) * w, 0, w, h);
+            if(i < 3){
+                moveFrame[i] = new TextureRegion(spriteSheet, (i) * w, h, w, h);
+            }
+            if(i < 1){
+                jumpFrame[i] = new TextureRegion(spriteSheet, (i) * w, h*2, w, h);
+            }
+        }
+        
+        idleAnim = new Animation(0.4f, idleFrame);
+        moveAnim = new Animation(0.15f, moveFrame);
+        jumpAnim = new Animation(0.1f, jumpFrame);
+    }
+    
+
+    @Override
+    public void Attack() {
+        
+    }
+
+    @Override
+    public void Jump() {
+        if(pc.jump && SHit){
+            this.yVelocity = (jump/2) * Gdx.graphics.getDeltaTime();
+        }
+        if(!SHit){
+            state = State.JUMP;
+        }
+        else if(SHit && state == State.JUMP){
+            state = State.IDLE;
+        }
+        
+    }
+    
+    
+}

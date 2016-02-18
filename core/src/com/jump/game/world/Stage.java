@@ -16,9 +16,10 @@ import java.util.ArrayList;
 public abstract class Stage {
     
     String name;
-    ArrayList<Objects> objectList;
-    //ArrayList<entities> entityList;
+    public GameCharacter main;
+    ArrayList<Environment> objectList;
+    ArrayList<GameCharacter> enemyList;
     
     public abstract void CalculateCollisions(GameCharacter gChar);
-    public abstract void RenderStage(SpriteBatch batch);
+    public abstract void RenderStage(SpriteBatch batch, float time);
 }

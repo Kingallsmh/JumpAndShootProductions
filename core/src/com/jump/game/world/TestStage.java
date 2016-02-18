@@ -6,7 +6,9 @@
 package com.jump.game.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jump.game.entities.CrimsonKnight;
 import com.jump.game.entities.GameCharacter;
+import com.jump.game.entities.Kibble;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +19,15 @@ import java.util.List;
 public class TestStage extends Stage{
 
     public TestStage(){
-        this.objectList = new ArrayList<Objects>();
+        this.objectList = new ArrayList<Environment>();
         this.name = "Test";
         for(int i = 0; i < 10; i++){
             objectList.add(new Floor(i*64, 0));
         }
         
+        this.main = new CrimsonKnight();
+        this.enemyList = new ArrayList<GameCharacter>();
+        this.enemyList.add(new Kibble());
     }
     
     
@@ -33,10 +38,17 @@ public class TestStage extends Stage{
     }
 
     @Override
-    public void RenderStage(SpriteBatch batch) {
-        for (Objects objectList1 : objectList) {
+    public void RenderStage(SpriteBatch batch, float time) {
+        
+        for (Environment objectList1 : objectList) {
             objectList1.RenderObject(batch);
         }
+        for (GameCharacter enemyL : enemyList){
+            CalculateCollisions(enemyL);
+            enemyL.Render(batch, time);
+        }
+        CalculateCollisions(main);
+        main.Render(batch, time);
     }
     
 }

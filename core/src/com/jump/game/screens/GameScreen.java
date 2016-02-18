@@ -15,9 +15,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jump.game.Configurations;
 import com.jump.game.entities.GameCharacter;
-import com.jump.game.entities.TestCharacter;
+import com.jump.game.entities.CrimsonKnight;
+import com.jump.game.entities.Kibble;
 import com.jump.game.world.Floor;
-import com.jump.game.world.Objects;
+import com.jump.game.world.Environment;
 import com.jump.game.world.Stage;
 import com.jump.game.world.TestStage;
 
@@ -33,9 +34,8 @@ public class GameScreen implements Screen{
     
     SpriteBatch batch;
     OrthographicCamera cam;
-    Objects floor;
+    Environment floor;
     Stage test;
-    TestCharacter chara;
 
     public GameScreen(SpriteBatch batch){
         //Using for testing and debugging
@@ -45,7 +45,6 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        chara = new TestCharacter();
         test = new TestStage();
     }
     
@@ -61,9 +60,7 @@ public class GameScreen implements Screen{
 	batch.setProjectionMatrix(cam.combined);
 	batch.begin();
         // Start drawing here
-        test.CalculateCollisions(chara);
-        test.RenderStage(batch);
-        chara.Render(batch, delta);
+        test.RenderStage(batch, delta);
         
         //Stop drawing
 	batch.end();
@@ -72,11 +69,11 @@ public class GameScreen implements Screen{
         testShapes.begin(ShapeRenderer.ShapeType.Line);
         testShapes.setProjectionMatrix(cam.combined);
         testShapes.setColor(Color.WHITE);
-        testShapes.rect(chara.hitBox.x, chara.hitBox.y, chara.hitBox.width, chara.hitBox.height);
-        testShapes.rect(chara.NCollide.x, chara.NCollide.y, chara.NCollide.width, chara.NCollide.height);
-        testShapes.rect(chara.SCollide.x, chara.SCollide.y, chara.SCollide.width, chara.SCollide.height);
-        testShapes.rect(chara.ECollide.x, chara.ECollide.y, chara.ECollide.width, chara.ECollide.height);
-        testShapes.rect(chara.WCollide.x, chara.WCollide.y, chara.WCollide.width, chara.WCollide.height);
+        testShapes.rect(test.main.hitBox.x, test.main.hitBox.y, test.main.hitBox.width, test.main.hitBox.height);
+        testShapes.rect(test.main.NCollide.x, test.main.NCollide.y, test.main.NCollide.width, test.main.NCollide.height);
+        testShapes.rect(test.main.SCollide.x, test.main.SCollide.y, test.main.SCollide.width, test.main.SCollide.height);
+        testShapes.rect(test.main.ECollide.x, test.main.ECollide.y, test.main.ECollide.width, test.main.ECollide.height);
+        testShapes.rect(test.main.WCollide.x, test.main.WCollide.y, test.main.WCollide.width, test.main.WCollide.height);
         
 //        for(Rectangle colArray : mCamp.collisionList){
 //            testing.rect(colArray.x, colArray.y, colArray.width, colArray.height);

@@ -14,8 +14,9 @@ import com.badlogic.gdx.math.Rectangle;
  *
  * @author NSCCSTUDENT
  */
-public abstract class Objects {
+public abstract class Environment {
     public float x, y;
+    boolean isMoving;
     public int width, height;
     public Rectangle hitbox;
     Texture testSheet;

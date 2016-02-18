@@ -14,13 +14,14 @@ import com.badlogic.gdx.math.Rectangle;
  *
  * @author NSCCSTUDENT
  */
-public class Floor extends Objects{
+public class Floor extends Environment{
 
     
     
     public Floor(float x, float y){
         this.x = x;
         this.y = y;
+        this.isMoving = false;
         this.width = 64;
         this.height = 32;
         this.testSheet = new Texture("TestTile.png");
