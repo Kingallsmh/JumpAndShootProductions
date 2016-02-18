@@ -93,7 +93,7 @@ public abstract class GameCharacter {
         SCollide.x = hitBox.x;
         SCollide.y = hitBox.y - 1;
         ECollide.x = hitBox.x + hitBox.width;
-        ECollide.y = hitBox.y;
+        ECollide.y = hitBox.y + 2;
         WCollide.x = hitBox.x - 1;
         WCollide.y = hitBox.y;
     }
@@ -233,6 +233,38 @@ public abstract class GameCharacter {
                 break;
             }
         }
+        
+        EHit = false;
+        for(Environment objectList1: objectList){
+            if(ECollide.overlaps(objectList1.hitbox)){
+                EHit = true;
+                xVelocity = 0;
+                x = objectList1.x - this.width;
+                break;
+            }
+        }
+        
+        
+        WHit = false;
+        for(Environment objectList1: objectList){
+            if(WCollide.overlaps(objectList1.hitbox)){
+                WHit = true;
+                xVelocity = 0;
+                x = objectList1.x + objectList1.width;
+                break;
+            }
+        }
+        
+        NHit = false;
+        for(Environment objectList1: objectList){
+            if(NCollide.overlaps(objectList1.hitbox)){
+                NHit = true;
+                yVelocity = 0;
+                y = objectList1.y;
+                break;
+            }
+        }
+        
         
         
     }

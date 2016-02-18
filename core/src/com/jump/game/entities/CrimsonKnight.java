@@ -27,7 +27,7 @@ public class CrimsonKnight extends GameCharacter{
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 0;
+        this.x = 200;
         this.y = 130;
         // Use image file to figure this out
         this.width = 20;
