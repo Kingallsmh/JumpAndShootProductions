@@ -10,7 +10,6 @@ import com.jump.game.entities.CrimsonKnight;
 import com.jump.game.entities.GameCharacter;
 import com.jump.game.entities.Kibble;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
