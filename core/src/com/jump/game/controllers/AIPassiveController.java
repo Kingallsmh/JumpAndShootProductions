@@ -10,9 +10,17 @@ package com.jump.game.controllers;
  * @author NSCCSTUDENT
  */
 public class AIPassiveController extends MainController{
-
+int counter = 0;
+    
     @Override
     public void ListenForInput() {
+        PressRight();
+        PressLeft();
+        PressJump();
+        if(counter > 140){
+            counter = 0;
+        }
+        counter ++;
     }
 
     @Override
@@ -29,10 +37,22 @@ public class AIPassiveController extends MainController{
 
     @Override
     public void PressLeft() {
+        if(counter > 40 && counter < 120){
+            left = true;
+        }
+        else{
+            left = false;
+        }
     }
 
     @Override
     public void PressRight() {
+        if(counter > 5 && counter < 40){
+            right = true;
+        }
+        else{
+            right = false;
+        }
     }
 
     @Override
@@ -41,6 +61,12 @@ public class AIPassiveController extends MainController{
 
     @Override
     public void PressJump() {
+        if(counter == 40 || counter == 80){
+            jump = true;
+        }
+        else{
+            jump = false;
+        }
     }
     
 }
