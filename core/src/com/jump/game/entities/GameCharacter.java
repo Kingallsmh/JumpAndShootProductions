@@ -35,7 +35,7 @@ public abstract class GameCharacter {
     float colBoxSizeAdjust, colBoxAdjust;
     
     boolean facingLeft = false;
-    boolean isInvernable = false;
+    boolean isInvincible = false;
     float hitColor = 0.5f;
     float hitCounter = 0;
     float gravity = 2;
@@ -174,7 +174,7 @@ public abstract class GameCharacter {
         }
     }
     public void Hit(){
-        if(state == State.HIT || isInvernable){
+        if(state == State.HIT || isInvincible){
             if(hitCounter % 5 == 1){
                 if(hitColor == 1f){
                     hitColor = 0.5f;
@@ -184,12 +184,12 @@ public abstract class GameCharacter {
                 }
             }
             if(hitCounter == 0){
-                isInvernable = true;
+                isInvincible = true;
                 state = State.IDLE;
             }
             if(hitCounter >= 200){
                 hitCounter = 0;
-                isInvernable = false;
+                isInvincible = false;
             }
             else{
                 hitCounter++;
@@ -287,7 +287,7 @@ public abstract class GameCharacter {
     }
     
     public void EnemyDetect(ArrayList<GameCharacter> enemyList){
-        if(!isInvernable){
+        if(!isInvincible){
             for(GameCharacter enemy : enemyList){
                 if(hitBox.overlaps(enemy.hitBox)){
                     if(WCollide.overlaps(enemy.hitBox)){
@@ -309,7 +309,7 @@ public abstract class GameCharacter {
     
     public void Render(SpriteBatch batch, float delta){
         CharacterLoop(delta);
-        if(isInvernable){
+        if(isInvincible){
             batch.setColor(1, 1, 1, hitColor);
         }
         if(facingLeft){
