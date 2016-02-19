@@ -27,7 +27,7 @@ public class CrimsonKnight extends GameCharacter{
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 0;
+        this.x = 200;
         this.y = 130;
         // Use image file to figure this out
         this.width = 20;
@@ -35,12 +35,14 @@ public class CrimsonKnight extends GameCharacter{
         this.xAdjust = -24; // Image needs to be pushed to the left
         this.yAdjust = -2;
         this.turnOffSet = 4;
+        this.colBoxSizeAdjust = 4;
+        this.colBoxAdjust = 2;
         
         this.hitBox = new Rectangle(x, y, width, height);
-        this.NCollide = new Rectangle(x, y, width, 1);
-        this.SCollide = new Rectangle(x, y, width, 1);
-        this.ECollide = new Rectangle(x, y, 1, height);
-        this.WCollide = new Rectangle(x, y, 1, height);
+        this.NCollide = new Rectangle(x, y, width - colBoxSizeAdjust, 1);
+        this.SCollide = new Rectangle(x, y, width - colBoxSizeAdjust, 1);
+        this.ECollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
+        this.WCollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         
         this.hp = 10;
         

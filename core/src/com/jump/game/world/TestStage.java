@@ -24,6 +24,16 @@ public class TestStage extends Stage{
         for(int i = 0; i < 10; i++){
             objectList.add(new Floor(i*64, 0));
         }
+        for(int i = 0; i<6; i++){
+            objectList.add(new Floor(6*64,i*32));
+        }
+        for(int i = 0; i<6; i++){
+            objectList.add(new Floor(0,i*32));
+        }
+        for(int i = 0; i<6; i++){
+            objectList.add(new Floor(i*64,192));
+        }
+        
         
         this.main = new CrimsonKnight();
         this.enemyList = new ArrayList<GameCharacter>();

@@ -32,6 +32,7 @@ public abstract class GameCharacter {
     float x, y;
     float width, height;
     float xAdjust, yAdjust, turnOffSet;
+    float colBoxSizeAdjust, colBoxAdjust;
     
     boolean facingLeft = false;
     boolean isInvernable = false;
@@ -59,7 +60,7 @@ public abstract class GameCharacter {
         if(state != State.BUSY){
             pc.ListenForInput();
             Gravity();
-            if(state != State.ATTACK){
+            if(state != State.ATTACK && state != State.HIT){
                 CharacterMoving();
                 Attack();
             }
@@ -91,14 +92,14 @@ public abstract class GameCharacter {
         
         hitBox.x = x;
         hitBox.y = y;
-        NCollide.x = hitBox.x;
+        NCollide.x = hitBox.x + colBoxAdjust;
         NCollide.y = hitBox.y + hitBox.height;
-        SCollide.x = hitBox.x;
+        SCollide.x = hitBox.x + colBoxAdjust;
         SCollide.y = hitBox.y - 1;
         ECollide.x = hitBox.x + hitBox.width;
-        ECollide.y = hitBox.y;
+        ECollide.y = hitBox.y + colBoxAdjust;
         WCollide.x = hitBox.x - 1;
-        WCollide.y = hitBox.y;
+        WCollide.y = hitBox.y + colBoxAdjust;
     }
     
     public void CharacterMoving(){
@@ -173,7 +174,7 @@ public abstract class GameCharacter {
         }
     }
     public void Hit(){
-        if(isInvernable){
+        if(state == State.HIT || isInvernable){
             if(hitCounter % 5 == 1){
                 if(hitColor == 1f){
                     hitColor = 0.5f;
@@ -181,6 +182,10 @@ public abstract class GameCharacter {
                 else{
                     hitColor = 1f;
                 }
+            }
+            if(hitCounter == 0){
+                isInvernable = true;
+                state = State.IDLE;
             }
             if(hitCounter >= 200){
                 hitCounter = 0;
@@ -252,22 +257,54 @@ public abstract class GameCharacter {
                 break;
             }
         }
+        EHit = false;
+        for(Environment objectList1: objectList){
+            if(ECollide.overlaps(objectList1.hitbox)){
+                EHit = true;
+                xVelocity = 0;
+                x = objectList1.x - this.width;
+                break;
+            }
+        }
+        WHit = false;
+        for(Environment objectList1: objectList){
+            if(WCollide.overlaps(objectList1.hitbox)){
+                WHit = true;
+                xVelocity = 0;
+                x = objectList1.x + objectList1.width;
+                break;
+            }
+        }
+        NHit = false;
+        for(Environment objectList1: objectList){
+            if(NCollide.overlaps(objectList1.hitbox)){
+                NHit = true;
+                yVelocity = 0;
+                y = objectList1.y;
+                break;
+            }
+        }
     }
     
     public void EnemyDetect(ArrayList<GameCharacter> enemyList){
-        for(GameCharacter enemy : enemyList){
-            if(hitBox.overlaps(enemy.hitBox)){
-                isInvernable = true;
-                if(WCollide.overlaps(enemy.hitBox)){
-                    xVelocity = Gdx.graphics.getDeltaTime() * 30;
-                    yVelocity = Gdx.graphics.getDeltaTime() * 60;
-                }
-                if(ECollide.overlaps(enemy.hitBox)){
-                    xVelocity = Gdx.graphics.getDeltaTime() * -30;
-                    yVelocity = Gdx.graphics.getDeltaTime() * 60;
+        if(!isInvernable){
+            for(GameCharacter enemy : enemyList){
+                if(hitBox.overlaps(enemy.hitBox)){
+                    if(WCollide.overlaps(enemy.hitBox)){
+                        xVelocity = Gdx.graphics.getDeltaTime() * 30;
+                        y += 1;
+                        yVelocity = Gdx.graphics.getDeltaTime() * 40;
+                    }
+                    else if(ECollide.overlaps(enemy.hitBox)){
+                        xVelocity = Gdx.graphics.getDeltaTime() * -30;
+                        y += 1;
+                        yVelocity = Gdx.graphics.getDeltaTime() * 40;
+                    }
+                    state = State.HIT;
                 }
             }
         }
+        
     }
     
     public void Render(SpriteBatch batch, float delta){

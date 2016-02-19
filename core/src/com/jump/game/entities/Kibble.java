@@ -24,7 +24,7 @@ public class Kibble extends GameCharacter{
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 50;
+        this.x = 90;
         this.y = 130;
         // Use image file to figure this out
         this.width = 11;
@@ -32,12 +32,14 @@ public class Kibble extends GameCharacter{
         this.xAdjust = -27;
         this.yAdjust = -2;
         this.turnOffSet = 1;
+        this.colBoxAdjust = 2;
+        this.colBoxSizeAdjust = 4;
         
         this.hitBox = new Rectangle(x, y, width, height);
-        this.NCollide = new Rectangle(x, y, width, 1);
-        this.SCollide = new Rectangle(x, y, width, 1);
-        this.ECollide = new Rectangle(x, y, 1, height);
-        this.WCollide = new Rectangle(x, y, 1, height);
+        this.NCollide = new Rectangle(x, y, width - colBoxSizeAdjust, 1);
+        this.SCollide = new Rectangle(x, y, width - colBoxSizeAdjust, 1);
+        this.ECollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
+        this.WCollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         
         this.hp = 10;
         
