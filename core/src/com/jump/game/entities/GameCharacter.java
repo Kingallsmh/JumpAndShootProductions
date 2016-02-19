@@ -262,7 +262,7 @@ public abstract class GameCharacter {
             if(ECollide.overlaps(objectList1.hitbox)){
                 EHit = true;
                 xVelocity = 0;
-                x = objectList1.x - this.width;
+                x = objectList1.x - this.width - 1;
                 break;
             }
         }
@@ -271,7 +271,7 @@ public abstract class GameCharacter {
             if(WCollide.overlaps(objectList1.hitbox)){
                 WHit = true;
                 xVelocity = 0;
-                x = objectList1.x + objectList1.width;
+                x = objectList1.x + objectList1.width + 1;
                 break;
             }
         }
