@@ -15,11 +15,11 @@ import com.jump.game.controllers.PlayerController;
  *
  * @author NSCCSTUDENT
  */
-public class CrimsonKnight extends GameCharacter{
+public class DepthKnight extends GameCharacter{
     
-    public CrimsonKnight(){
+    public DepthKnight(){
         this.pc = new PlayerController();
-        this.speed = 60;
+        this.speed = 30;
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
@@ -43,22 +43,21 @@ public class CrimsonKnight extends GameCharacter{
         this.hp = 10;
         
         this.spriteSheet = new Texture("KnightSheet.png");
-        this.state = State.IDLE;
+        this.state = GameCharacter.State.IDLE;
         this.idleFrame = new TextureRegion[2];
         this.moveFrame = new TextureRegion[4];
         this.atkFrame = new TextureRegion[2];
         
         for(int i = 0; i < 2; i++){
-            idleFrame[i] = new TextureRegion(spriteSheet, (i+2) * w, 0, w, h);
-            moveFrame[i*2] = new TextureRegion(spriteSheet, (i+2) * w, h, w, h);
+            idleFrame[i] = new TextureRegion(spriteSheet, (i+4) * w, 0, w, h);
+            moveFrame[i*2] = new TextureRegion(spriteSheet, (i+4) * w, h, w, h);
             moveFrame[1] = idleFrame[0];
             moveFrame[3] = idleFrame[0];
-            atkFrame[i] = new TextureRegion(spriteSheet, (i+2) * w, h*2, w, h);
+            atkFrame[i] = new TextureRegion(spriteSheet, (i+4) * w, h*2, w, h);
         }
         
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.25f, moveFrame);
-        atkAnim = new Animation(0.4f, atkFrame);
+        atkAnim = new Animation(0.2f, atkFrame);
     }
-    
 }

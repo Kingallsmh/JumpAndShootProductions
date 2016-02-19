@@ -7,6 +7,8 @@ package com.jump.game.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jump.game.entities.CrimsonKnight;
+import com.jump.game.entities.DepthKnight;
+import com.jump.game.entities.ForestKnight;
 import com.jump.game.entities.GameCharacter;
 import com.jump.game.entities.Kibble;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class TestStage extends Stage{
         }
         
         
-        this.main = new CrimsonKnight();
+        this.main = new ForestKnight();
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new Kibble());
     }

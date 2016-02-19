@@ -15,22 +15,22 @@ import com.jump.game.controllers.PlayerController;
  *
  * @author NSCCSTUDENT
  */
-public class CrimsonKnight extends GameCharacter{
+public class ForestKnight extends GameCharacter{
     
-    public CrimsonKnight(){
+    public ForestKnight(){
         this.pc = new PlayerController();
-        this.speed = 60;
-        this.jump = 150;
+        this.speed = 80;
+        this.jump = 250;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
         this.x = 200;
         this.y = 130;
         // Use image file to figure this out
-        this.width = 20;
+        this.width = 16;
         this.height = 28;
         this.xAdjust = -24; // Image needs to be pushed to the left
         this.yAdjust = -2;
-        this.turnOffSet = 4;
+        this.turnOffSet = 0;
         this.colBoxSizeAdjust = 4;
         this.colBoxAdjust = 2;
         
@@ -49,16 +49,15 @@ public class CrimsonKnight extends GameCharacter{
         this.atkFrame = new TextureRegion[2];
         
         for(int i = 0; i < 2; i++){
-            idleFrame[i] = new TextureRegion(spriteSheet, (i+2) * w, 0, w, h);
-            moveFrame[i*2] = new TextureRegion(spriteSheet, (i+2) * w, h, w, h);
+            idleFrame[i] = new TextureRegion(spriteSheet, (i) * w, 0, w, h);
+            moveFrame[i*2] = new TextureRegion(spriteSheet, (i) * w, h, w, h);
             moveFrame[1] = idleFrame[0];
             moveFrame[3] = idleFrame[0];
-            atkFrame[i] = new TextureRegion(spriteSheet, (i+2) * w, h*2, w, h);
+            atkFrame[i] = new TextureRegion(spriteSheet, (i) * w, h*2, w, h);
         }
         
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.25f, moveFrame);
-        atkAnim = new Animation(0.4f, atkFrame);
+        atkAnim = new Animation(0.3f, atkFrame);
     }
-    
 }
