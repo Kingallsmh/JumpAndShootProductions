@@ -6,6 +6,7 @@
 package com.jump.game.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jump.game.Objects.Projectiles;
 import com.jump.game.entities.GameCharacter;
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public abstract class Stage {
     public GameCharacter main;
     ArrayList<Environment> objectList;
     ArrayList<GameCharacter> enemyList;
+    public Projectiles pTest;
     
     public abstract void CalculateCollisions(GameCharacter gChar);
     public abstract void RenderStage(SpriteBatch batch, float time);

@@ -6,6 +6,8 @@
 package com.jump.game.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jump.game.Objects.Projectiles;
+import com.jump.game.entities.Buggith;
 import com.jump.game.entities.CrimsonKnight;
 import com.jump.game.entities.DepthKnight;
 import com.jump.game.entities.ForestKnight;
@@ -31,12 +33,13 @@ public class TestStage extends Stage{
         for(int i = 0; i<6; i++){
             objectList.add(new Floor(0,i*32));
         }
-        for(int i = 0; i<6; i++){
+        for(int i = 0; i<7; i++){
             objectList.add(new Floor(i*64,192));
         }
         
         
-        this.main = new ForestKnight();
+        this.main = new Buggith();
+        pTest = new Projectiles();
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new Kibble());
     }
@@ -61,6 +64,8 @@ public class TestStage extends Stage{
         }
         CalculateCollisions(main);
         main.Render(batch, time);
+        pTest.Update(main);
+        pTest.Render(batch);
     }
     
 }

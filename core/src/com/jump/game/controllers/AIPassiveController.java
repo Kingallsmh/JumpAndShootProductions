@@ -16,7 +16,7 @@ int counter = 0;
     public void ListenForInput() {
         PressRight();
         PressLeft();
-        PressJump();
+//        PressJump();
         if(counter > 140){
             counter = 0;
         }
@@ -37,7 +37,7 @@ int counter = 0;
 
     @Override
     public void PressLeft() {
-        if(counter > 40 && counter < 120){
+        if(counter > 5 && counter < 40){
             left = true;
         }
         else{
@@ -47,7 +47,7 @@ int counter = 0;
 
     @Override
     public void PressRight() {
-        if(counter > 5 && counter < 40){
+        if(counter > 45 && counter < 120){
             right = true;
         }
         else{

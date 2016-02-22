@@ -29,7 +29,7 @@ public abstract class GameCharacter {
     float maxYVelocity;
     float speed;
     float jump;
-    float x, y;
+    public float x, y;
     float width, height;
     float xAdjust, yAdjust, turnOffSet;
     float colBoxSizeAdjust, colBoxAdjust;
@@ -127,6 +127,9 @@ public abstract class GameCharacter {
                 MoveAnim(Gdx.graphics.getDeltaTime());
             }
             else{
+                if(WHit){
+                    x += 1;
+                }
                 this.xVelocity = Gdx.graphics.getDeltaTime() * speed;
             }
             facingLeft = false;
@@ -149,6 +152,9 @@ public abstract class GameCharacter {
                 MoveAnim(Gdx.graphics.getDeltaTime());
             }
             else{
+                if(EHit){
+                    x -= 1;
+                }
                 this.xVelocity = Gdx.graphics.getDeltaTime() * -speed;
             }
             facingLeft = true;
@@ -160,6 +166,7 @@ public abstract class GameCharacter {
                 xVelocity = -xVelocity;
             }
         }
+        
     }
     public void Jump(){
         if(pc.jump && SHit){
@@ -262,7 +269,7 @@ public abstract class GameCharacter {
             if(ECollide.overlaps(objectList1.hitbox)){
                 EHit = true;
                 xVelocity = 0;
-                x = objectList1.x - this.width - 1;
+                x = objectList1.x - this.hitBox.width;
                 break;
             }
         }
@@ -271,7 +278,7 @@ public abstract class GameCharacter {
             if(WCollide.overlaps(objectList1.hitbox)){
                 WHit = true;
                 xVelocity = 0;
-                x = objectList1.x + objectList1.width + 1;
+                x = objectList1.x + objectList1.width;
                 break;
             }
         }
@@ -280,7 +287,7 @@ public abstract class GameCharacter {
             if(NCollide.overlaps(objectList1.hitbox)){
                 NHit = true;
                 yVelocity = 0;
-                y = objectList1.y;
+                y = objectList1.y - this.hitBox.height;
                 break;
             }
         }

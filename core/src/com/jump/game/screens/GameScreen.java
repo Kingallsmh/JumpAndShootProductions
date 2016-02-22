@@ -57,7 +57,8 @@ public class GameScreen implements Screen{
 	batch.begin();
         // Start drawing here
         test.RenderStage(batch, delta);
-        
+        testFont.setColor(0, 0, 0, 1);
+        testFont.draw(batch, String.valueOf(test.pTest.angle), 20, 20);
         //Stop drawing
 	batch.end();
         
