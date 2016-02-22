@@ -31,7 +31,7 @@ public class Buggith extends GameCharacter{
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 60;
+        this.x = 90;
         this.y = 60;
         // Use image file to figure this out
         this.width = 15;
@@ -57,7 +57,7 @@ public class Buggith extends GameCharacter{
         onWall = 0;
         IdlePosFrame = new TextureRegion[2];
         MoveVerticalFrame = new TextureRegion[2];
-        //this.jumpFrame = new TextureRegion[1];
+        this.atkFrame = new TextureRegion[1];
         
         for(int i = 0; i < 2; i++){
             IdlePosFrame[i] = new TextureRegion(spriteSheet, (i) * w, 0, w, h);
@@ -67,19 +67,22 @@ public class Buggith extends GameCharacter{
         for(int i = 0; i < 2; i++){
             idleFrame[0] = new TextureRegion(spriteSheet, (0) * w, 0, w, h);
             moveFrame[i] = new TextureRegion(spriteSheet, (i) * w, h, w, h);
-            //jumpFrame[i] = new TextureRegion(spriteSheet, (i) * w, h*2, w, h);
-            
         }
+        
+        atkFrame[0] = new TextureRegion(spriteSheet, 2 * w, 0, w, h);
         
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.15f, moveFrame);
         moveVerticalAnim = new Animation(0.15f, MoveVerticalFrame);
-        //jumpAnim = new Animation(0.1f, jumpFrame);
+        atkAnim = new Animation(0.1f, atkFrame);
     }
     
     @Override
     public void Attack() {
-        
+        if(pc.action && NHit){
+            stateTime = 0;
+            y -= 1;
+        }
     }
     
     @Override
@@ -307,6 +310,7 @@ public class Buggith extends GameCharacter{
         }
         else{
             onWall = 0;
+            state = State.ATTACK;
         }
     }
     
@@ -321,7 +325,7 @@ public class Buggith extends GameCharacter{
     
     @Override
     public void IdleAnim(float time){
-        if(onWall == 1 || onWall == 0 || onWall == 4){
+        if(onWall == 1 || onWall == 4){
             currentFrame = IdlePosFrame[0];    
         }
         else if(onWall == 2 || onWall == 3){
@@ -332,11 +336,14 @@ public class Buggith extends GameCharacter{
     @Override
     public void MoveAnim(float time) {
         stateTime += time;
-        if(onWall == 1 || onWall == 0 || onWall == 4){
+        if(onWall == 1 || onWall == 4){
             currentFrame = moveAnim.getKeyFrame(stateTime, true);  
         }
         else if(onWall == 2 || onWall == 3){
             currentFrame = moveVerticalAnim.getKeyFrame(stateTime, true);
+        }
+        else if(onWall == 0){
+            currentFrame = atkAnim.getKeyFrame(stateTime, true);
         }
         
         if(stateTime > 10000){
@@ -382,6 +389,9 @@ public class Buggith extends GameCharacter{
             else{
                 batch.draw(currentFrame, x + xAdjust + w + turnOffSet, y + 17, -w, -h);
             }
+        }
+        if(onWall == 0){
+            batch.draw(currentFrame, x + xAdjust - 2, y + yAdjust - 2, w, h);
         }
         
         batch.setColor(1, 1, 1, 1f);

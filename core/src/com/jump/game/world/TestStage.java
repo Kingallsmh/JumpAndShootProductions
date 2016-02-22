@@ -6,6 +6,7 @@
 package com.jump.game.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jump.game.Objects.HomingProjectile;
 import com.jump.game.Objects.Projectiles;
 import com.jump.game.entities.Buggith;
 import com.jump.game.entities.CrimsonKnight;
@@ -39,7 +40,7 @@ public class TestStage extends Stage{
         
         
         this.main = new Buggith();
-        pTest = new Projectiles();
+        pTest = new HomingProjectile(200, 150);
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new Kibble());
     }

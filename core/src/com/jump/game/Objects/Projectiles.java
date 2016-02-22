@@ -9,20 +9,27 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.entities.GameCharacter;
+import com.jump.game.world.Environment;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
  * @author Kyle
  */
-public class Projectiles {
-    float x = 70;
-    float y = 70;
+public abstract class Projectiles{
+    float x;
+    float y;
     double xVel;
     double yVel;
-    float speed = 5;
-    public double angle = 0;
-    float DestinationD;
+    float speed;
+    float maxSpeed;
+    public double angle = 90;
+    public Rectangle hitbox;
+    float xAdjust;
+    float yAdjust;
     int s = 32;
     Texture spriteSheet;
     TextureRegion projectilePic;
@@ -32,28 +39,17 @@ public class Projectiles {
         projectilePic = new TextureRegion(spriteSheet, 0, 0, s, s);
     }
     
-    public void Update(GameCharacter chara){
-//        DestinationD = ((chara.x - x) * (chara.x - x)) + ((chara.y - y) * (chara.y - y));
-        float xDifference = (chara.x + 10) - (x);
-        float yDifference = (chara.y + 10) - (y);
-        float totalDifference = (float) Math.sqrt((xDifference * xDifference) + (yDifference * yDifference));
-        
-        float totalTime = totalDifference/speed;
-        float xForce = xDifference/totalTime;
-        float yForce = yDifference/totalTime;
-        angle = (Math.toDegrees(Math.atan2(yForce, xForce))) + 90;
-        
-        
-        if(xVel < 3 || xVel > -3){
-            xVel += Gdx.graphics.getDeltaTime() * xForce;
-        }
-        if(yVel < 3 || yVel > -3){
-            yVel += Gdx.graphics.getDeltaTime() * yForce;
+    public abstract void Update(GameCharacter chara);
+    
+    public void DetectCollision(ArrayList<Environment> environList){
+        for(Environment objectList1 : environList){
+            if(hitbox.overlaps(objectList1.hitbox)){
+                xVel = 0;
+                yVel = 0;
+                break;
+            }
         }
         
-        
-        x+= xVel;
-        y+= yVel;
     }
     
     public void Render(SpriteBatch batch){

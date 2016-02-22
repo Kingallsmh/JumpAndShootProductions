@@ -24,7 +24,7 @@ public class Kibble extends GameCharacter{
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 90;
+        this.x = 120;
         this.y = 60;
         // Use image file to figure this out
         this.width = 11;
