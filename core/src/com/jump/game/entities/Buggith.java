@@ -57,7 +57,7 @@ public class Buggith extends GameCharacter{
         onWall = 0;
         IdlePosFrame = new TextureRegion[2];
         MoveVerticalFrame = new TextureRegion[2];
-        this.atkFrame = new TextureRegion[1];
+        this.jumpFrame = new TextureRegion[1];
         
         for(int i = 0; i < 2; i++){
             IdlePosFrame[i] = new TextureRegion(spriteSheet, (i) * w, 0, w, h);
@@ -69,25 +69,41 @@ public class Buggith extends GameCharacter{
             moveFrame[i] = new TextureRegion(spriteSheet, (i) * w, h, w, h);
         }
         
-        atkFrame[0] = new TextureRegion(spriteSheet, 2 * w, 0, w, h);
+        jumpFrame[0] = new TextureRegion(spriteSheet, 2 * w, 0, w, h);
         
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.15f, moveFrame);
         moveVerticalAnim = new Animation(0.15f, MoveVerticalFrame);
-        atkAnim = new Animation(0.1f, atkFrame);
+        jumpAnim = new Animation(0.1f, jumpFrame);
     }
     
     @Override
     public void Attack() {
-        if(pc.action && NHit){
-            stateTime = 0;
-            y -= 1;
+        if(pc.action){
+            
         }
     }
     
     @Override
     public void Jump() {
-        
+        super.Jump();
+        if(pc.jump && NHit){
+            stateTime = 0;
+            y -= 1;
+        }
+        if(pc.jump && EHit){
+            stateTime = 0;
+            x -= 1;
+        }
+        if(pc.jump && WHit){
+            stateTime = 0;
+            x += 1;
+        }
+    }
+
+    @Override
+    public void JumpAnim(float time) {
+        super.JumpAnim(time); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -310,7 +326,7 @@ public class Buggith extends GameCharacter{
         }
         else{
             onWall = 0;
-            state = State.ATTACK;
+            state = State.JUMP;
         }
     }
     
