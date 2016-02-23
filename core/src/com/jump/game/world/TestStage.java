@@ -5,6 +5,8 @@
  */
 package com.jump.game.world;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jump.game.Objects.HomingProjectile;
 import com.jump.game.Objects.Projectiles;
@@ -22,27 +24,42 @@ import java.util.ArrayList;
  */
 public class TestStage extends Stage{
 
+    
     public TestStage(){
         this.objectList = new ArrayList<Environment>();
         this.name = "Test";
-        for(int i = 0; i < 10; i++){
-            objectList.add(new Floor(i*64, 0));
+        
+        MapReader mRead = new MapReader();
+        for(int i = mRead.map.size() - 1; i >= 0; i--){
+            if(mRead.map.get(i).contains("2")){
+                int spotX = mRead.map.get(i).indexOf("2");
+                System.out.println(spotX);
+                System.out.println(i);
+                objectList.add(new Floor(spotX*64, i * 32));
+            }
         }
-        for(int i = 0; i<6; i++){
-            objectList.add(new Floor(6*64,i*32));
-        }
-        for(int i = 0; i<6; i++){
-            objectList.add(new Floor(0,i*32));
-        }
-        for(int i = 0; i<7; i++){
-            objectList.add(new Floor(i*64,192));
-        }
+        
+//        for(int i = 0; i < 10; i++){
+//            objectList.add(new Floor(i*64, 0));
+//        }
+//        for(int i = 0; i<6; i++){
+//            objectList.add(new Floor(6*64,i*32));
+//        }
+//        for(int i = 0; i<6; i++){
+//            objectList.add(new Floor(0,i*32));
+//        }
+//        for(int i = 0; i<7; i++){
+//            objectList.add(new Floor(i*64,192));
+//        }
         
         
         this.main = new ForestKnight(this);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new Kibble());
+        
+        
+        
     }
     
     
