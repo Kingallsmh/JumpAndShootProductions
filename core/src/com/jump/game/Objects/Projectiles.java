@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.entities.GameCharacter;
+import com.jump.game.entities.GameCharacter.State;
 import com.jump.game.world.Environment;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -20,6 +21,8 @@ import java.util.Objects;
  * @author Kyle
  */
 public abstract class Projectiles{
+    GameCharacter gChar;
+    
     float x;
     float y;
     double xVel;
@@ -41,13 +44,16 @@ public abstract class Projectiles{
     
     public abstract void Update(GameCharacter chara);
     
-    public void DetectCollision(ArrayList<Environment> environList){
+    public void DetectCollision(ArrayList<Environment> environList, ArrayList<Projectiles> pList, GameCharacter gChar){
         for(Environment objectList1 : environList){
             if(hitbox.overlaps(objectList1.hitbox)){
-                xVel = 0;
-                yVel = 0;
+                pList.remove(this);
                 break;
             }
+        }
+        if(hitbox.overlaps(gChar.hitBox) && !gChar.isInvincible){
+            pList.remove(this);
+            gChar.state = State.HIT;
         }
         
     }

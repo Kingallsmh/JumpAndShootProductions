@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.controllers.MainController;
 import com.jump.game.world.Environment;
+import com.jump.game.world.Stage;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +22,7 @@ import java.util.ArrayList;
  */
 public abstract class GameCharacter {
     MainController pc;
+    Stage stage;
     
     int hp;
     float xVelocity = 0;
@@ -30,15 +32,17 @@ public abstract class GameCharacter {
     float speed;
     float jump;
     public float x, y;
-    float width, height;
+    public float width, height;
     float xAdjust, yAdjust, turnOffSet;
     float colBoxSizeAdjust, colBoxAdjust;
     
     boolean facingLeft = false;
-    boolean isInvincible = false;
+    public boolean isInvincible = false;
     float hitColor = 0.5f;
     float hitCounter = 0;
     float gravity = 2;
+    int proC = 0;
+    int proCMax;
     
     int w = 64;
     int h = 64;
@@ -46,7 +50,7 @@ public abstract class GameCharacter {
     public Rectangle hitBox, NCollide, SCollide, ECollide, WCollide;
     public boolean NHit = false, SHit = false, EHit = false, WHit = false;
     
-    State state;
+    public State state;
     Texture spriteSheet;
     TextureRegion currentFrame;
     TextureRegion[] idleFrame, moveFrame, atkFrame, jumpFrame;
@@ -62,8 +66,8 @@ public abstract class GameCharacter {
             Gravity();
             if(state != State.ATTACK && state != State.HIT){
                 CharacterMoving();
-                Attack();
             }
+            Attack();
         }
         Hit();
         CharacterUpdate(time);
@@ -175,9 +179,10 @@ public abstract class GameCharacter {
         }
     }
     public void Attack(){
-        if(pc.action){
+        if(pc.action && proC > proCMax){
             state = State.ATTACK;
             stateTime = 0;
+            proC = 0;
         }
     }
     public void Hit(){

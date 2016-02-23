@@ -9,7 +9,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.jump.game.Objects.HomingProjectile;
+import com.jump.game.Objects.StraightShot;
 import com.jump.game.controllers.PlayerController;
+import com.jump.game.world.Stage;
 
 /**
  *
@@ -17,9 +20,12 @@ import com.jump.game.controllers.PlayerController;
  */
 public class ForestKnight extends GameCharacter{
     
-    public ForestKnight(){
+    boolean throwDown = false;
+    
+    public ForestKnight(Stage stage){
+        this.stage = stage;
         this.pc = new PlayerController();
-        this.speed = 80;
+        this.speed = 60;
         this.jump = 250;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
@@ -41,6 +47,8 @@ public class ForestKnight extends GameCharacter{
         this.WCollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         
         this.hp = 10;
+        proCMax = 60;
+        proC = proCMax;
         
         this.spriteSheet = new Texture("KnightSheet.png");
         this.state = State.IDLE;
@@ -59,5 +67,43 @@ public class ForestKnight extends GameCharacter{
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.25f, moveFrame);
         atkAnim = new Animation(0.3f, atkFrame);
+    }
+    
+    @Override
+    public void Attack() {
+        if(pc.action && pc.down && proC > proCMax){
+            state = State.ATTACK;
+            stateTime = 0;
+            proC = 0;
+            throwDown = true;
+        }
+        else if(pc.action && proC > proCMax){
+            state = State.ATTACK;
+            stateTime = 0;
+            proC = 0;
+        }
+        
+        if(proC == 15){
+            if(throwDown){
+                stage.projectileList.add(new StraightShot(this, 0, -2, facingLeft));
+            }
+            else{
+                stage.projectileList.add(new StraightShot(this, 2, 0, facingLeft));
+            }
+            throwDown = false;
+        }
+        if( proC <= proCMax){
+            proC ++;
+        }
+    }
+    
+
+    @Override
+    public void AtkAnim(float time) {
+        stateTime += time;
+        currentFrame = atkAnim.getKeyFrame(stateTime, false);
+        if(atkAnim.isAnimationFinished(stateTime)){
+            state = State.IDLE;
+        }
     }
 }

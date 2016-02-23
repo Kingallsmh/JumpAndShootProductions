@@ -11,8 +11,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.jump.game.Objects.HomingProjectile;
 import com.jump.game.controllers.AIPassiveController;
 import com.jump.game.controllers.PlayerController;
+import com.jump.game.world.Stage;
 
 /**
  *
@@ -23,9 +25,10 @@ public class Buggith extends GameCharacter{
     int onWall = 0;
     TextureRegion[] IdlePosFrame = new TextureRegion[2];
     TextureRegion[] MoveVerticalFrame = new TextureRegion[2];
-    Animation moveVerticalAnim;
+    Animation moveVerticalAnim; 
     
-    public Buggith(){
+    public Buggith(Stage stage){
+        this.stage = stage;
         this.pc = new PlayerController();
         this.speed = 30;
         this.jump = 150;
@@ -49,6 +52,9 @@ public class Buggith extends GameCharacter{
         this.WCollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         
         this.hp = 10;
+        this.proCMax = 60;
+        this.proC = proCMax;
+        proCMax = 60;
         
         this.spriteSheet = new Texture("BuggithSheet.png");
         this.state = State.IDLE;
@@ -79,8 +85,29 @@ public class Buggith extends GameCharacter{
     
     @Override
     public void Attack() {
-        if(pc.action){
+        if(pc.action && proC > proCMax && SHit){
+            stage.projectileList.add(new HomingProjectile(this, 0, 1.5f));
+            stage.projectileList.add(new HomingProjectile(this, 1f, 1f));
+            stage.projectileList.add(new HomingProjectile(this, -1f, 1f));
+            proC = 0;
+        }
+        else if(pc.action && proC > proCMax && NHit){
+            stage.projectileList.add(new HomingProjectile(this, 0, -1.5f));
+            stage.projectileList.add(new HomingProjectile(this, 1f, -1f));
+            stage.projectileList.add(new HomingProjectile(this, -1f, -1f));
+            proC = 0;
+        }
+        else if(pc.action && proC > proCMax && EHit){
+            stage.projectileList.add(new HomingProjectile(this, -1.5f, 0));
+            proC = 0;
+        }
+        else if(pc.action && proC > proCMax && WHit){
+            stage.projectileList.add(new HomingProjectile(this, 1.5f, 0));
             
+            proC = 0;
+        }
+        if(proC < 220){
+            proC++;
         }
     }
     
@@ -99,11 +126,6 @@ public class Buggith extends GameCharacter{
             stateTime = 0;
             x += 1;
         }
-    }
-
-    @Override
-    public void JumpAnim(float time) {
-        super.JumpAnim(time); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -359,7 +381,7 @@ public class Buggith extends GameCharacter{
             currentFrame = moveVerticalAnim.getKeyFrame(stateTime, true);
         }
         else if(onWall == 0){
-            currentFrame = atkAnim.getKeyFrame(stateTime, true);
+            currentFrame = jumpAnim.getKeyFrame(stateTime, true);
         }
         
         if(stateTime > 10000){

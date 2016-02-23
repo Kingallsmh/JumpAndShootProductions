@@ -39,8 +39,8 @@ public class TestStage extends Stage{
         }
         
         
-        this.main = new Buggith();
-        pTest = new HomingProjectile(200, 150);
+        this.main = new ForestKnight(this);
+        this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new Kibble());
     }
@@ -65,8 +65,13 @@ public class TestStage extends Stage{
         }
         CalculateCollisions(main);
         main.Render(batch, time);
-        pTest.Update(main);
-        pTest.Render(batch);
+        
+        for(int i = 0; i < projectileList.size(); i++){
+            projectileList.get(i).Update(enemyList.get(0));
+            projectileList.get(i).Render(batch);
+            projectileList.get(i).DetectCollision(objectList, projectileList, enemyList.get(0));
+        }
+        
     }
     
 }

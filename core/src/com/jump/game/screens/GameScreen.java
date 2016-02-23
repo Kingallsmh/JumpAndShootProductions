@@ -58,7 +58,7 @@ public class GameScreen implements Screen{
         // Start drawing here
         test.RenderStage(batch, delta);
         testFont.setColor(0, 0, 0, 1);
-        testFont.draw(batch, String.valueOf(test.pTest.angle), 20, 20);
+        //testFont.draw(batch, String.valueOf(test.projectileList.get(0).angle), 20, 20);
         //Stop drawing
 	batch.end();
         
@@ -67,7 +67,8 @@ public class GameScreen implements Screen{
         testShapes.setProjectionMatrix(cam.combined);
         testShapes.setColor(Color.WHITE);
         testShapes.rect(test.main.hitBox.x, test.main.hitBox.y, test.main.hitBox.width, test.main.hitBox.height);
-        testShapes.rect(test.pTest.hitbox.x, test.pTest.hitbox.y, test.pTest.hitbox.width, test.pTest.hitbox.height);
+        //testShapes.rect(test.projectileList.get(0).hitbox.x, test.projectileList.get(0).hitbox.y, 
+                //test.projectileList.get(0).hitbox.width, test.projectileList.get(0).hitbox.height);
         testShapes.rect(test.main.NCollide.x, test.main.NCollide.y, test.main.NCollide.width, test.main.NCollide.height);
         testShapes.rect(test.main.SCollide.x, test.main.SCollide.y, test.main.SCollide.width, test.main.SCollide.height);
         testShapes.rect(test.main.ECollide.x, test.main.ECollide.y, test.main.ECollide.width, test.main.ECollide.height);

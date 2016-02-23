@@ -41,6 +41,8 @@ public class DepthKnight extends GameCharacter{
         this.WCollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         
         this.hp = 10;
+        this.proCMax = 10;
+        this.proC = proCMax;
         
         this.spriteSheet = new Texture("KnightSheet.png");
         this.state = GameCharacter.State.IDLE;
