@@ -14,7 +14,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.Objects.HomingProjectile;
 import com.jump.game.controllers.AIPassiveController;
 import com.jump.game.controllers.PlayerController;
+import com.jump.game.world.Environment;
 import com.jump.game.world.Stage;
+import java.util.ArrayList;
 
 /**
  *
@@ -277,6 +279,46 @@ public class Buggith extends GameCharacter{
             }
             facingLeft = true;
             state = State.MOVE;
+        }
+    }
+
+    @Override
+    public void CollisionDetect(ArrayList<Environment> objectList) {
+        SHit = false;
+        for(Environment objectList1 : objectList){
+            if(SCollide.overlaps(objectList1.hitbox)){
+                SHit = true;
+                yVelocity = 0;
+                y = objectList1.y + objectList1.height;
+                break;
+            }
+        }
+        EHit = false;
+        for(Environment objectList1: objectList){
+            if(ECollide.overlaps(objectList1.hitbox)){
+                EHit = true;
+                xVelocity = 0;
+                x = objectList1.x - this.hitBox.width;
+                break;
+            }
+        }
+        WHit = false;
+        for(Environment objectList1: objectList){
+            if(WCollide.overlaps(objectList1.hitbox)){
+                WHit = true;
+                xVelocity = 0;
+                x = objectList1.x + objectList1.width;
+                break;
+            }
+        }
+        NHit = false;
+        for(Environment objectList1: objectList){
+            if(NCollide.overlaps(objectList1.hitbox)){
+                NHit = true;
+                yVelocity = 0;
+                y = objectList1.y - this.hitBox.height;
+                break;
+            }
         }
     }
     

@@ -9,14 +9,14 @@ package com.jump.game.controllers;
  *
  * @author NSCCSTUDENT
  */
-public class AIPassiveController extends MainController{
-int counter = 0;
+public class AIShootingController extends MainController{
+    int counter = 0;
     
     @Override
     public void ListenForInput() {
-        PressRight();
-        PressLeft();
+        
 //        PressJump();
+        PressAction();
         if(counter > 140){
             counter = 0;
         }
@@ -57,6 +57,12 @@ int counter = 0;
 
     @Override
     public void PressAction() {
+        if(counter == 1){
+            this.action = true;
+        }
+        else{
+            this.action = false;
+        }
     }
 
     @Override
@@ -78,5 +84,4 @@ int counter = 0;
     public void PressFast() {
 
     }
-    
 }

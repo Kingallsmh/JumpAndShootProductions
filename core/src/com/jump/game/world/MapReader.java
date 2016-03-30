@@ -7,6 +7,7 @@ package com.jump.game.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.Json;
 import java.util.ArrayList;
 
 /**
@@ -20,22 +21,24 @@ public class MapReader {
     public int cols;
     
     public MapReader(){
+               
         FileHandle file = Gdx.files.internal("TestStage.txt");
-        String text = file.readString(null);
+        String text = file.readString();
         System.out.println(text);
         
-        rows = 4;
-        cols = 10;
-        map = new ArrayList<String>();
+//        
+//        rows = 4;
+//        cols = 10;
+//        map = new ArrayList<String>();
         
         for(int i = 0; i < rows; i++){
             map.add(text.substring(0, cols));
-            text = text.substring(cols);
+            text = text.substring(13);
         }
-        System.out.println(map.get(0));
-        System.out.println(map.get(1));
-        System.out.println(map.get(2));
-        System.out.println(map.get(3));
+//        System.out.print(map.get(0) + ":1:");
+//        System.out.print(map.get(1)+ ":2:");
+//        System.out.print(map.get(2)+ ":3:");
+//        System.out.print(map.get(3) + ":4:");
         
     }
     

@@ -7,6 +7,7 @@ package com.jump.game.world;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jump.game.Objects.Projectiles;
+import com.jump.game.entities.Bag;
 import com.jump.game.entities.GameCharacter;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public abstract class Stage {
     
     String name;
     public GameCharacter main;
+    public Bag b;
     ArrayList<Environment> objectList;
     ArrayList<GameCharacter> enemyList;
     public ArrayList<Projectiles> projectileList;

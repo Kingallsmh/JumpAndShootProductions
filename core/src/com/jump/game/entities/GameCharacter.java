@@ -57,7 +57,7 @@ public abstract class GameCharacter {
     Animation idleAnim, moveAnim, atkAnim, jumpAnim;
     
     public enum State{
-        IDLE, MOVE, ATTACK, JUMP, BUSY, HIT;
+        IDLE, MOVE, ATTACK, JUMP, MELEE, BAG, BUSY, HIT;
     }
     
     public void CharacterLoop(float time){
@@ -73,24 +73,45 @@ public abstract class GameCharacter {
         CharacterUpdate(time);
         AnimationLoop(time);
     }
+    
     public void CharacterUpdate(float time){
         this.x += xVelocity;
         this.y += yVelocity;
         
-        if(xVelocity > 0 && SHit){
-            if(xVelocity < 0.1){
-                xVelocity = 0;
+        if(SHit){
+            if(xVelocity > 0){
+                if(xVelocity < 0.1){
+                    xVelocity = 0;
+                }
+                else{
+                    xVelocity -= Gdx.graphics.getDeltaTime() * (speed/10);//Slow down the character
+                }
             }
-            else{
-                xVelocity -= Gdx.graphics.getDeltaTime() * (speed/10);//Slow down the character
+            else if(xVelocity < 0){
+                if(xVelocity > -0.1){
+                    xVelocity = 0;
+                }
+                else{
+                    xVelocity += Gdx.graphics.getDeltaTime() * (speed/10);
+                }
             }
         }
-        else if(xVelocity < 0 && SHit){
-            if(xVelocity > -0.1){
-                xVelocity = 0;
+        else if(!SHit){
+            if(xVelocity > 0){
+                if(xVelocity < 0.1){
+                    xVelocity = 0;
+                }
+                else{
+                    xVelocity -= Gdx.graphics.getDeltaTime() * (speed/25);//Slow down the character
+                }
             }
-            else{
-                xVelocity += Gdx.graphics.getDeltaTime() * (speed/10);
+            else if(xVelocity < 0){
+                if(xVelocity > -0.1){
+                    xVelocity = 0;
+                }
+                else{
+                    xVelocity += Gdx.graphics.getDeltaTime() * (speed/25);
+                }
             }
         }
         
@@ -120,10 +141,10 @@ public abstract class GameCharacter {
         }
         Jump();
     }
+    
     public void MoveRight() {
         //On the ground controls
-        if(SHit){
-            if(pc.fast){
+            if(pc.fast && SHit){
             //******* Use this section to increase speed to a cap
             if(xVelocity < maxXVelocity){
                 this.xVelocity = Gdx.graphics.getDeltaTime() * (speed*2);
@@ -138,18 +159,10 @@ public abstract class GameCharacter {
             }
             facingLeft = false;
             state = State.MOVE;
-        }
-        else{
-            if(xVelocity < 0){
-                facingLeft = false;
-                xVelocity = -xVelocity;
-            }
-        }
     }
     public void MoveLeft() {
         //On the ground controls
-        if(SHit){
-            if(pc.fast){
+            if(pc.fast && SHit){
             if(xVelocity > -maxXVelocity){
                 this.xVelocity = Gdx.graphics.getDeltaTime() * (-speed*2);
             }
@@ -163,14 +176,6 @@ public abstract class GameCharacter {
             }
             facingLeft = true;
             state = State.MOVE;
-        }
-        if(!SHit){
-            if(xVelocity > 0){
-                facingLeft = true;
-                xVelocity = -xVelocity;
-            }
-        }
-        
     }
     public void Jump(){
         if(pc.jump && SHit){
@@ -230,6 +235,7 @@ public abstract class GameCharacter {
             JumpAnim(time);
         }
     }
+    
     public void IdleAnim(float time){
         stateTime += time;
         currentFrame = idleAnim.getKeyFrame(stateTime, true);        
@@ -274,7 +280,7 @@ public abstract class GameCharacter {
             if(ECollide.overlaps(objectList1.hitbox)){
                 EHit = true;
                 xVelocity = 0;
-                x = objectList1.x - this.hitBox.width;
+                x = objectList1.x - this.hitBox.width - 1;
                 break;
             }
         }
@@ -283,7 +289,7 @@ public abstract class GameCharacter {
             if(WCollide.overlaps(objectList1.hitbox)){
                 WHit = true;
                 xVelocity = 0;
-                x = objectList1.x + objectList1.width;
+                x = objectList1.x + objectList1.width + 1;
                 break;
             }
         }
@@ -292,7 +298,7 @@ public abstract class GameCharacter {
             if(NCollide.overlaps(objectList1.hitbox)){
                 NHit = true;
                 yVelocity = 0;
-                y = objectList1.y - this.hitBox.height;
+                y = objectList1.y - this.hitBox.height - 1;
                 break;
             }
         }

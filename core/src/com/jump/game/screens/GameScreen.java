@@ -41,7 +41,7 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage();
+        test = new TestStage(cam);
     }
     
     @Override
@@ -65,7 +65,7 @@ public class GameScreen implements Screen{
         //Testing for hitboxs is drawn here
         testShapes.begin(ShapeRenderer.ShapeType.Line);
         testShapes.setProjectionMatrix(cam.combined);
-        testShapes.setColor(Color.WHITE);
+        testShapes.setColor(Color.RED);
         testShapes.rect(test.main.hitBox.x, test.main.hitBox.y, test.main.hitBox.width, test.main.hitBox.height);
         //testShapes.rect(test.projectileList.get(0).hitbox.x, test.projectileList.get(0).hitbox.y, 
                 //test.projectileList.get(0).hitbox.width, test.projectileList.get(0).hitbox.height);
@@ -73,6 +73,8 @@ public class GameScreen implements Screen{
         testShapes.rect(test.main.SCollide.x, test.main.SCollide.y, test.main.SCollide.width, test.main.SCollide.height);
         testShapes.rect(test.main.ECollide.x, test.main.ECollide.y, test.main.ECollide.width, test.main.ECollide.height);
         testShapes.rect(test.main.WCollide.x, test.main.WCollide.y, test.main.WCollide.width, test.main.WCollide.height);
+        testShapes.setColor(Color.BLUE);
+//        testShapes.rect(test.main.bag.hitbox.x, test.b.hitbox.y, test.b.hitbox.width, test.b.hitbox.height);
         
 //        for(Rectangle colArray : mCamp.collisionList){
 //            testing.rect(colArray.x, colArray.y, colArray.width, colArray.height);

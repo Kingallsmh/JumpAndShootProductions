@@ -18,7 +18,7 @@ import com.jump.game.controllers.AIPassiveController;
  */
 public class Kibble extends GameCharacter{
     
-    public Kibble(){
+    public Kibble(float x, float y){
         this.pc = new AIPassiveController();
         this.speed = 30;
         this.jump = 150;

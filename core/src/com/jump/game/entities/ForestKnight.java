@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.Objects.HomingProjectile;
 import com.jump.game.Objects.StraightShot;
+import com.jump.game.controllers.AIPassiveController;
+import com.jump.game.controllers.AIShootingController;
 import com.jump.game.controllers.PlayerController;
 import com.jump.game.world.Stage;
 
@@ -22,9 +24,9 @@ public class ForestKnight extends GameCharacter{
     
     boolean throwDown = false;
     
-    public ForestKnight(Stage stage){
+    public ForestKnight(Stage stage, float x, float y){
         this.stage = stage;
-        this.pc = new PlayerController();
+        this.pc = new AIShootingController();
         this.speed = 60;
         this.jump = 250;
         this.maxXVelocity = 3;

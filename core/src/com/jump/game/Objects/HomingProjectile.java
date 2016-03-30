@@ -23,6 +23,7 @@ public class HomingProjectile extends Projectiles{
     float burnStop = 0.5f;
     
     public HomingProjectile(GameCharacter gChar, float xVel, float yVel){
+        this.bagSizeValue = 2;
         this.x = gChar.x + 8;
         this.y = gChar.y + 8;
         this.initXVel = xVel;

@@ -16,16 +16,39 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Floor extends Environment{
 
+    enum Tiles{
+        GRASS1, GRASS2, UNDERGROUND, TOPCORNER, DIRTWALL
+    }
     
-    
-    public Floor(float x, float y){
+    public Floor(float x, float y, Tiles imageChoice, boolean flipX){
         this.x = x;
         this.y = y;
+        this.flipX = flipX;
         this.isMoving = false;
-        this.width = 64;
-        this.height = 32;
-        this.testSheet = new Texture("TestTile.png");
-        this.pic = new TextureRegion(testSheet, 0, 0, width, height);
+        this.width = 16;
+        this.height = 16;
+        this.testSheet = new Texture("ForestParts.png");
+                
+        if(null != imageChoice)switch (imageChoice) {
+            case GRASS1:
+                this.pic = new TextureRegion(testSheet, 0, 0, width, height);
+                break;
+            case GRASS2:
+                this.pic = new TextureRegion(testSheet, width, 0, width, height);
+                break;
+            case UNDERGROUND:
+                this.pic = new TextureRegion(testSheet, width*2, 0, width, height);
+                break;
+            case TOPCORNER:
+                this.pic = new TextureRegion(testSheet, width*3, 0, width, height);
+                break;
+            case DIRTWALL:
+                this.pic = new TextureRegion(testSheet, width*3, height, width, height);
+                break;
+            default:
+                break;
+        }
+        
         
         this.hitbox = new Rectangle(this.x, this.y, this.width, this.height);
     }
@@ -42,7 +65,12 @@ public class Floor extends Environment{
 
     @Override
     public void RenderObject(SpriteBatch batch) {
-        batch.draw(pic, x, y);
+        if(!flipX){
+            batch.draw(pic, x, y);
+        }
+        else{
+            batch.draw(pic, x + width, y, -width, height);
+        }
     }
     
     

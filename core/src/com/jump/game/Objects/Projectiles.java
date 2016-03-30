@@ -22,6 +22,7 @@ import java.util.Objects;
  */
 public abstract class Projectiles{
     GameCharacter gChar;
+    public int bagSizeValue;
     
     float x;
     float y;

@@ -17,6 +17,9 @@ import com.badlogic.gdx.math.Rectangle;
 public abstract class Environment {
     public float x, y;
     boolean isMoving;
+    boolean flipX;
+    boolean flipY;
+    int w, h;
     public int width, height;
     public Rectangle hitbox;
     Texture testSheet;

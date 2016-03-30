@@ -27,7 +27,7 @@ public class StraightShot extends Projectiles{
             angle = 90;
             this.x = gChar.x + gChar.width + 4;
         }
-        
+        this.bagSizeValue = 1;
         this.y = gChar.y + 16;
         
         this.yVel = yVel;
