@@ -40,10 +40,10 @@ public class HomingProjectile extends Projectiles{
     }
 
     @Override
-    public void Update(GameCharacter chara) {
+    public void Update() {
         if(burned){
-            float xDifference = (chara.x + 10) - (x);
-            float yDifference = (chara.y + 10) - (y);
+            float xDifference = (gChar.x + 10) - (x);
+            float yDifference = (gChar.y + 10) - (y);
             float totalDifference = (float) Math.sqrt((xDifference * xDifference) + (yDifference * yDifference));
 
             float totalTime = totalDifference/speed;
