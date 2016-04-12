@@ -17,6 +17,7 @@ import com.jump.game.entities.CrimsonKnight;
 import com.jump.game.entities.DepthKnight;
 import com.jump.game.entities.ForestKnight;
 import com.jump.game.entities.GameCharacter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jump.game.entities.Kibble;
 import com.jump.game.entities.Main;
 import com.jump.game.world.Floor.Tiles;
@@ -28,7 +29,10 @@ import java.util.ArrayList;
  */
 public class TestStage extends Stage{
 
+    
+
 Camera camFuncs;
+BitmapFont loserFont;
 OrthographicCamera cam;
 float width = 5000;
 
@@ -37,6 +41,7 @@ float width = 5000;
         this.objectList = new ArrayList<Environment>();
         camFuncs = new Camera(cam);
         this.name = "Test";
+        loserFont = new BitmapFont();
         
         for(int i = 0; i < 10; i++){
             objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
@@ -90,6 +95,18 @@ float width = 5000;
             projectileList.get(i).Render(batch);
             projectileList.get(i).DetectCollision(objectList, projectileList, enemyList.get(0));
         }
+        
+        CheckDeath(batch);
+    }
+    
+    public void CheckDeath(SpriteBatch batch){
+              
+        if(main.y < 0){
+           loserFont.setColor(0, 0, 0, 1);
+           loserFont.draw(batch, "YOU LOSE", camFuncs.cam.position.x, camFuncs.cam.position.y);
+           main.pause = true;
+        }
+        
         
     }
     

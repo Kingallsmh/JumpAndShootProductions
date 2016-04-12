@@ -83,20 +83,23 @@ public class Main extends GameCharacter{
     
     @Override
     public void CharacterLoop(float time) {
-        if(state != State.BUSY){
             pc.ListenForInput();
-            Gravity();
-            if(state != State.ATTACK && state != State.HIT && state != State.BAG){
-                CharacterMoving();
-                UseBagGrab();
-            }
-            Attack();
-            StoreInSack();
-        }
-        Hit();
-        CharacterUpdate(time);
-        AnimationLoop(time);
+            if(this.pause == false){
+                if(state != State.BUSY){
+
+                    Gravity();
+                    if(state != State.ATTACK && state != State.HIT && state != State.BAG){
+                        CharacterMoving();
+                        UseBagGrab();
+                    }
+                    Attack();
+                    StoreInSack();
+                }
+                Hit();
+                CharacterUpdate(time);
+                AnimationLoop(time);
         
+            }
     }
     
 

@@ -35,7 +35,7 @@ public abstract class GameCharacter {
     public float width, height;
     float xAdjust, yAdjust, turnOffSet;
     float colBoxSizeAdjust, colBoxAdjust;
-    
+    public boolean pause = false;
     boolean facingLeft = false;
     public boolean isInvincible = false;
     float hitColor = 0.5f;
@@ -61,17 +61,22 @@ public abstract class GameCharacter {
     }
     
     public void CharacterLoop(float time){
-        if(state != State.BUSY){
-            pc.ListenForInput();
-            Gravity();
-            if(state != State.ATTACK && state != State.HIT){
-                CharacterMoving();
+         pc.ListenForInput();
+         if(pause == false){
+            if(state != State.BUSY){
+
+                Gravity();
+                if(state != State.ATTACK && state != State.HIT){
+                    CharacterMoving();
+                }
+                Attack();
             }
-            Attack();
-        }
-        Hit();
-        CharacterUpdate(time);
-        AnimationLoop(time);
+            Hit();
+            CharacterUpdate(time);
+            AnimationLoop(time);
+            CheckDeath();
+             }
+        
     }
     
     public void CharacterUpdate(float time){
@@ -340,4 +345,17 @@ public abstract class GameCharacter {
         }
         batch.setColor(1, 1, 1, 1f);
     }
+    
+    public void CheckDeath(){
+        
+        if(this.y < 0){
+            //if too low
+            
+            
+            
+        }
+    
+    }
+    
+    
 }
