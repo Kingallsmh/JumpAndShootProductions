@@ -18,6 +18,7 @@ import com.jump.game.entities.DepthKnight;
 import com.jump.game.entities.ForestKnight;
 import com.jump.game.entities.GameCharacter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.jump.game.Objects.SackFlame;
 import com.jump.game.entities.Kibble;
 import com.jump.game.entities.Main;
 import com.jump.game.world.Floor.Tiles;
@@ -120,11 +121,15 @@ float width = 5000;
         
         
         
+        
+        
         this.main = new Main(this);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new Kibble(100, 40));
         this.enemyList.add(new ForestKnight(this, 250, 40));
+        
+        this.projectileList.add(new SackFlame(150,150));
     }
     
     
