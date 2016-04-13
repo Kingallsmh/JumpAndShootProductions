@@ -193,6 +193,12 @@ float width = 5000;
                 enemyList.get(i).pause = true;
             }
         }
+        
+        for(int i = 0; i < projectileList.size(); i++){
+            if(!camFuncs.IsOnScreen(projectileList.get(i).hitbox.x)){
+                projectileList.remove(projectileList.get(i));
+            }
+        }
     }
     
 }
