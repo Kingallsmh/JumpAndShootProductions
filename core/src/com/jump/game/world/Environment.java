@@ -22,7 +22,7 @@ public abstract class Environment {
     int w, h;
     public int width, height;
     public Rectangle hitbox;
-    Texture testSheet;
+    Texture testSheet, noselessTom, bush;
     TextureRegion pic;
     
     public CollisionProperties collide;

@@ -20,7 +20,10 @@ public class Floor extends Environment{
         GRASS1, GRASS2, UNDERGROUND, TOPCORNER, DIRTWALL
     }
     
-    public Floor(float x, float y, Tiles imageChoice, boolean flipX){
+    int drawThing;
+    
+    public Floor(float x, float y, Tiles imageChoice, boolean flipX, int drawThing){
+        this.drawThing = drawThing;
         this.x = x;
         this.y = y;
         this.flipX = flipX;
@@ -28,7 +31,9 @@ public class Floor extends Environment{
         this.width = 16;
         this.height = 16;
         this.testSheet = new Texture("ForestParts.png");
-                
+        this.bush = new Texture("bush.png");
+        this.noselessTom = new Texture("tree2.png");
+        
         if(null != imageChoice)switch (imageChoice) {
             case GRASS1:
                 this.pic = new TextureRegion(testSheet, 0, 0, width, height);
@@ -65,6 +70,12 @@ public class Floor extends Environment{
 
     @Override
     public void RenderObject(SpriteBatch batch) {
+        if(drawThing == 1){
+            batch.draw(bush, x, y);
+        }else if(drawThing == 2){
+            batch.draw(noselessTom, x, y);
+        }
+        
         if(!flipX){
             batch.draw(pic, x, y);
         }

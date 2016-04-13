@@ -10,6 +10,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -32,6 +33,7 @@ public class GameScreen implements Screen{
     OrthographicCamera cam;
     Environment floor;
     Stage test;
+    Texture cloud, sun;
 
     public GameScreen(SpriteBatch batch){
         //Using for testing and debugging
@@ -42,6 +44,8 @@ public class GameScreen implements Screen{
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
         test = new TestStage(cam);
+        cloud = new Texture("cloud1.png");
+        sun = new Texture("sun.png");
     }
     
     public void newStage()
@@ -61,11 +65,17 @@ public class GameScreen implements Screen{
             newStage();
         }
         
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0.5f, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         cam.update();
 	batch.setProjectionMatrix(cam.combined);
 	batch.begin();
+        //Draw clouds
+        batch.draw(sun, cam.position.x - 40, cam.position.y);
+        batch.draw(cloud, cam.position.x, cam.position.y);
+        batch.draw(cloud, cam.position.x - 80, cam.position.y - 70);
+        batch.draw(cloud, cam.position.x - 190, cam.position.y - 10);
+        
         // Start drawing here
         test.RenderStage(batch, delta);
         testFont.setColor(0, 0, 0, 1);

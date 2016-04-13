@@ -44,56 +44,62 @@ float width = 5000;
         loserFont = new BitmapFont();
         
         for(int i = 0; i < 10; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+            if(i == 0){
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
+            }
+            else{
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            }
+            
         }
-        objectList.add(new Floor(10*16, 16, Tiles.TOPCORNER, true));
-        objectList.add(new Floor(20*16, 16, Tiles.TOPCORNER, false));
+        objectList.add(new Floor(10*16, 16, Tiles.TOPCORNER, true, 1));
+        objectList.add(new Floor(20*16, 16, Tiles.TOPCORNER, false, 0));
         for(int i = 11; i < 20; i++){
-            objectList.add(new Floor(i*16, 16, Tiles.GRASS2, false));
+            objectList.add(new Floor(i*16, 16, Tiles.GRASS2, false, 0));
         }
         for(int i = 10; i < 21; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false));
+            objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false, 0));
         }
         for(int i = 1; i < 15; i++){
-            objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false));
+            objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false, 0));
         }
         for(int i = 21; i < 30; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 38; i < 42; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
         }
         int climb = 48;
         for(int i = 45; i < 50; i++){
             climb += 16;
-            objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false, 0));
         }
         
         
         for(int i = 55; i < 70; i++){
-            objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 78; i < 84; i++){
-            objectList.add(new Floor(i*16, 117, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 117, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 90; i < 96; i++){
-            objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false, 0));
         }
         
         
         for(int i = 105; i < 135; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 115; i < 125; i++){
-            objectList.add(new Floor(i*16, 64, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 64, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 140; i <170 ; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
         }
         
         
