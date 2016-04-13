@@ -30,15 +30,27 @@ import java.util.ArrayList;
  */
 public class TestStage extends Stage{
 
-    
-
 Camera camFuncs;
 BitmapFont loserFont;
 
 float width = 5000;
 
-
-    public TestStage(OrthographicCamera cam){
+    public TestStage(OrthographicCamera cam, int savePoint){
+        
+        //Save points
+        switch (savePoint){
+            case 0: 
+                this.xStart = 30;
+                this.yStart = 20;
+                break;
+            case 1:
+                break;
+        }
+        
+        
+        
+        
+        
         this.objectList = new ArrayList<Environment>();
         camFuncs = new Camera(cam);
         this.name = "Test";
@@ -123,13 +135,13 @@ float width = 5000;
         
         
         
-        this.main = new Main(this);
+        this.main = new Main(this, xStart, yStart);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
-        this.enemyList.add(new Kibble(100, 40));
         this.enemyList.add(new ForestKnight(this, 250, 40));
+        this.enemyList.add(new Kibble(this, 100, 40));
         
-        this.projectileList.add(new SackFlame(150,150));
+        this.projectileList.add(new SackFlame(30,60));
     }
     
     
@@ -150,17 +162,16 @@ float width = 5000;
         for (Environment objectList1 : objectList) {
             objectList1.RenderObject(batch);
         }
-        for (GameCharacter enemyL : enemyList){
-            CalculateCollisions(enemyL);
-            enemyL.Render(batch, time);
+        for (int i = 0; i < enemyList.size(); i++){
+            CalculateCollisions(enemyList.get(i));
+            enemyList.get(i).Render(batch, time);
         }
         CalculateCollisions(main);
         main.Render(batch, time);
         
         for(int i = 0; i < projectileList.size(); i++){
             projectileList.get(i).Update();
-            projectileList.get(i).Render(batch);
-            projectileList.get(i).DetectCollisionWithMain(objectList, projectileList, main);
+            projectileList.get(i).Render(batch, objectList, projectileList, enemyList, main);
         }
         
         CheckDeath(batch);

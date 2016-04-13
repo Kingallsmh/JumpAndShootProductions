@@ -43,14 +43,14 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam);
+        test = new TestStage(cam, 0);
         cloud = new Texture("cloud1.png");
         sun = new Texture("sun.png");
     }
     
     public void newStage()
     {
-        test = new TestStage(cam);
+        test = new TestStage(cam, 0);
     }
     
     @Override

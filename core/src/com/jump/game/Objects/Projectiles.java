@@ -23,11 +23,10 @@ import java.util.Objects;
 public abstract class Projectiles{
     public int bagSizeValue;
     GameCharacter gChar;
-    float x;
-    float y;
-    double xVel;
+    public float x, y;
+    public double xVel;
     double yVel;
-    float speed;
+    public float speed;
     float maxSpeed;
     public double angle = 90;
     public Rectangle hitbox;
@@ -36,6 +35,7 @@ public abstract class Projectiles{
     int s = 32;
     Texture spriteSheet;
     TextureRegion projectilePic;
+    public boolean fromPlayer = false;
     
     public Projectiles(){
         spriteSheet = new Texture("ProjectilesSheet.png");
@@ -67,13 +67,20 @@ public abstract class Projectiles{
         for(int i = 0; i < enemyList.size(); i++){
             if(hitbox.overlaps(enemyList.get(i).hitBox)){
                 enemyList.get(i).state = State.HIT;
+                pList.remove(this);
                 break;
             }
         }
     }
     
-    public void Render(SpriteBatch batch){
+    public void Render(SpriteBatch batch, ArrayList<Environment> environList, ArrayList<Projectiles> pList, ArrayList<GameCharacter> enemyList,
+    GameCharacter main){
+        if(fromPlayer){
+            DetectCollisionWithEnemy(environList, pList, enemyList);
+        }
+        else{
+            DetectCollisionWithMain(environList, pList, main);
+        }
         batch.draw(projectilePic, x - 16, y - 16, 16, 16, 32, 32, 1, 1, (float) angle);
-        
     }
 }

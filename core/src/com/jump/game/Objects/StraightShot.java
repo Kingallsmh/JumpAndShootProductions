@@ -31,7 +31,7 @@ public class StraightShot extends Projectiles{
         this.y = gChar.y + 16;
         
         this.yVel = yVel;
-        speed = 10;
+        speed = xVel;
         maxSpeed = 0;
         xAdjust = 12;
         yAdjust = 10;

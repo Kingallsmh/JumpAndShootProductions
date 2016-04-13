@@ -72,6 +72,39 @@ public class Bag {
         }
     }
     
+//    if(facingLeft){
+//            this.xVel = -xVel;
+//            angle = 270;
+//            this.x = gChar.x - 4;
+//        }
+//        else{
+//            this.xVel = xVel;
+//            angle = 90;
+//            this.x = gChar.x + gChar.width + 4;
+//        }
+    
+    
+    public void ReleaseFromBag(){
+        if(inTheBag.size() > 0){
+            for(int i = 0; i < inTheBag.size(); i++){
+                inTheBag.get(i).fromPlayer = true;
+                if(chara.facingLeft){
+                    inTheBag.get(i).xVel = -inTheBag.get(i).speed;
+                    inTheBag.get(i).x = chara.x - 4;
+                }
+                else if(!chara.facingLeft){
+                    inTheBag.get(i).xVel = inTheBag.get(i).speed;
+                    inTheBag.get(i).x = chara.x + chara.width + 4;
+                }
+               inTheBag.get(i).y = chara.y + chara.height/2;
+               chara.stage.projectileList.add(inTheBag.get(i));
+               currentSize -= inTheBag.get(i).bagSizeValue;
+               inTheBag.remove(inTheBag.get(i));
+            }
+            
+        }
+    }
+    
     public void BagCollision(Projectiles projectile){
         if(this.hitbox.overlaps(projectile.hitbox)){
             PutInBag(projectile);

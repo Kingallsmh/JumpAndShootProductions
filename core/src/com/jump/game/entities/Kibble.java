@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.controllers.AIPassiveController;
+import com.jump.game.world.Stage;
 
 /**
  *
@@ -18,7 +19,8 @@ import com.jump.game.controllers.AIPassiveController;
  */
 public class Kibble extends GameCharacter{
     
-    public Kibble(float x, float y){
+    public Kibble(Stage stage, float x, float y){
+        this.stage = stage;
         this.pc = new AIPassiveController();
         this.speed = 30;
         this.jump = 150;

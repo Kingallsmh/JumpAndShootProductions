@@ -28,7 +28,9 @@ public class Main extends GameCharacter{
     Animation grabAnim;
     public Bag bag;
     
-    public Main(Stage stage){
+    public Main(Stage stage, float x, float y){
+        this.x = x;
+        this.y = y;
         this.stage = stage;
         this.bag = new Bag(this);
         this.pc = new PlayerController();
@@ -36,8 +38,6 @@ public class Main extends GameCharacter{
         this.jump = 250;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 100;
-        this.y = 130;
         // Use image file to figure this out
         this.width = 16;
         this.height = 28;
@@ -67,9 +67,10 @@ public class Main extends GameCharacter{
         
         for(int i = 0; i < 2; i++){
             idleFrame[i] = new TextureRegion(spriteSheet, (i) * w, 0, w, h);
-            atkFrame[i] = new TextureRegion(spriteSheet, (i) * w, h*2, w, h);
             grabFrame[i] = new TextureRegion(spriteSheet, i * w, h, w, h);
         }
+        atkFrame[0] = grabFrame[1];
+        atkFrame[1] = grabFrame[0];
         
         jumpFrame[0] = new TextureRegion(spriteSheet, 0, h*2, w, h);
         holdBagFrame = new TextureRegion(spriteSheet, w*2, h, w, h);
@@ -96,8 +97,9 @@ public class Main extends GameCharacter{
                     if(state != State.ATTACK && state != State.HIT && state != State.BAG){
                         CharacterMoving();
                         UseBagGrab();
+                        Attack();
                     }
-                    Attack();
+                    
                     StoreInSack();
                 }
                 Hit();
@@ -134,6 +136,18 @@ public class Main extends GameCharacter{
         }
         
     }
+
+    @Override
+    public void AtkAnim(float time) {
+        if(stateTime == 0){
+            bag.ReleaseFromBag();
+        }
+        stateTime += time;
+        currentFrame = atkAnim.getKeyFrame(stateTime, false);
+        if(atkAnim.isAnimationFinished(stateTime)){
+            state = State.IDLE;
+        }
+    }
     
     public void BagAnimation(float time){
         stateTime += time;
@@ -160,9 +174,13 @@ public class Main extends GameCharacter{
             }
         } 
     }
-    
-    public void ReleaseFromSack(){
-        
+
+    @Override
+    public void Attack() {
+        if(pc.throwItem){
+            state = State.ATTACK;
+            stateTime = 0;
+        }
     }
     
 
