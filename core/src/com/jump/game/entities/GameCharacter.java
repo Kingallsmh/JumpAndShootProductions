@@ -359,8 +359,8 @@ public abstract class GameCharacter {
             batch.draw(currentFrame, x + xAdjust, y + yAdjust);
         }
         batch.setColor(1, 1, 1, 1f);
-        System.out.println("X: "+this.x);
-        System.out.println("Y: " + this.y);
+//        System.out.println("X: "+this.x);
+//        System.out.println("Y: " + this.y);
     }
     
     public void Die()

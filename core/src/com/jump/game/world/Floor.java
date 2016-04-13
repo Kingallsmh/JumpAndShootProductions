@@ -23,6 +23,9 @@ public class Floor extends Environment{
         }else if(drawThing == 2){
             batch.draw(noselessTom, x - noselessTom.getWidth()/2, y + 16);
         }
+        else if(drawThing == 3){
+            batch.draw(tree, x, y + 16);
+        }
     }
 
     enum Tiles{
@@ -42,6 +45,7 @@ public class Floor extends Environment{
         this.testSheet = new Texture("ForestParts.png");
         this.bush = new Texture("bush.png");
         this.noselessTom = new Texture("tree2.png");
+        this.tree = new Texture("tree.png");
         
         if(null != imageChoice)switch (imageChoice) {
             case GRASS1:

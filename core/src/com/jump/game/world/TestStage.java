@@ -101,9 +101,15 @@ float width = 5000;
             objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false, 0));
         }
         
-        
+        //Highest platform
         for(int i = 55; i < 70; i++){
-            objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false, 0));
+            if(i == 55){
+                objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false, 1));
+            }
+            else{
+                objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false, 0));
+            }
+            
         }
         
         for(int i = 78; i < 84; i++){
@@ -114,9 +120,18 @@ float width = 5000;
             objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false, 0));
         }
         
-        
+        //Back to ground level with a floating platform
         for(int i = 105; i < 135; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            if(i == 109){
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
+            }
+            else if(i == 120){
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 3));
+            }
+            else{
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            }
+            
         }
         
         for(int i = 115; i < 125; i++){
