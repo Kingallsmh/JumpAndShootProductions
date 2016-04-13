@@ -43,7 +43,7 @@ public abstract class Projectiles{
         projectilePic = new TextureRegion(spriteSheet, 0, 0, s, s);
     }
     
-    public abstract void Update(GameCharacter chara);
+    public abstract void Update();
     
     public void DetectCollision(ArrayList<Environment> environList, ArrayList<Projectiles> pList, GameCharacter gChar){
         for(Environment objectList1 : environList){

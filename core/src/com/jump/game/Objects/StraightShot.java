@@ -42,7 +42,7 @@ public class StraightShot extends Projectiles{
     }
 
     @Override
-    public void Update(GameCharacter chara) {
+    public void Update() {
         x+= xVel;
         y+= yVel;
         hitbox.x = x - 4;

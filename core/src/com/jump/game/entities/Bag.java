@@ -29,7 +29,7 @@ public class Bag {
     GameCharacter chara;
     public Rectangle hitbox;
     float width = 5;
-    float height = 30;
+    float height = 26;
     boolean isBeingUsed = false;
     
     public Bag(GameCharacter chara){
@@ -75,6 +75,7 @@ public class Bag {
     public void BagCollision(Projectiles projectile){
         if(this.hitbox.overlaps(projectile.hitbox)){
             PutInBag(projectile);
+            chara.stage.projectileList.remove(projectile);
         }
     }
     
