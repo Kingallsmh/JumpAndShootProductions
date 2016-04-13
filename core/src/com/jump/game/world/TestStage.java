@@ -70,6 +70,37 @@ float width = 5000;
             objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false));
         }
         
+        
+        for(int i = 55; i < 70; i++){
+            objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 78; i < 84; i++){
+            objectList.add(new Floor(i*16, 117, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 90; i < 96; i++){
+            objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false));
+        }
+        
+        
+        for(int i = 105; i < 135; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 115; i < 125; i++){
+            objectList.add(new Floor(i*16, 64, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 140; i <170 ; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        
+        
+        
+        
+        
         this.main = new Main(this);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
