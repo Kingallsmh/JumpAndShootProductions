@@ -21,9 +21,8 @@ import java.util.Objects;
  * @author Kyle
  */
 public abstract class Projectiles{
-    GameCharacter gChar;
     public int bagSizeValue;
-    
+    GameCharacter gChar;
     float x;
     float y;
     double xVel;
@@ -65,9 +64,11 @@ public abstract class Projectiles{
                 break;
             }
         }
-        if(hitbox.overlaps(gChar.hitBox) && !gChar.isInvincible){
-            pList.remove(this);
-            gChar.state = State.HIT;
+        for(int i = 0; i < enemyList.size(); i++){
+            if(hitbox.overlaps(enemyList.get(i).hitBox)){
+                enemyList.get(i).state = State.HIT;
+                break;
+            }
         }
     }
     

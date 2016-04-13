@@ -113,7 +113,6 @@ float width = 5000;
     @Override
     public void CalculateCollisions(GameCharacter gChar) {
             gChar.CollisionDetect(objectList);
-            main.EnemyDetect(enemyList);
     }
 
     @Override
@@ -141,9 +140,12 @@ float width = 5000;
     
     public void CheckDeath(SpriteBatch batch){
               
+        //System.out.println(main.hp);
         if(main.hp <=0)
         {
+            
             KillPlayer(batch);
+            //System.out.println(main.hp);
         }
         
         if(main.y < 0-20-main.height){

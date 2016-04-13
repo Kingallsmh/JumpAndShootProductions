@@ -53,7 +53,7 @@ public class Main extends GameCharacter{
         this.ECollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         this.WCollide = new Rectangle(x, y, 1, height - colBoxSizeAdjust);
         
-        this.hp = 10;
+        //this.hp = 10;
         proCMax = 60;
         proC = proCMax;
         
@@ -91,7 +91,7 @@ public class Main extends GameCharacter{
             if(this.pause == false){
                 if(state != State.BUSY){
 
-                //this.EnemyDetect(stage.enemyList);
+                this.EnemyDetect(stage.enemyList);
                     Gravity();
                     if(state != State.ATTACK && state != State.HIT && state != State.BAG){
                         CharacterMoving();

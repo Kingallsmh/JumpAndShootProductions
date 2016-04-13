@@ -218,7 +218,7 @@ public abstract class GameCharacter {
             if(hitCounter == 0){
                 isInvincible = true;
                 state = State.IDLE;
-                this.hp -=35;
+                DamageCharacter(33);
                 //System.out.println("hit");
             }
             if(hitCounter >= 200){
@@ -230,6 +230,12 @@ public abstract class GameCharacter {
             }
         }
     }
+    
+    public void DamageCharacter(int owie)
+    {
+        this.hp -= owie;
+    }
+    
     public void Gravity(){
         if(!SHit){
             if(yVelocity > -maxYVelocity){
