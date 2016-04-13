@@ -337,6 +337,7 @@ public abstract class GameCharacter {
                         yVelocity = Gdx.graphics.getDeltaTime() * 40;
                     }
                     state = State.HIT;
+                    System.out.println("Hit");
                 }
             }
         }

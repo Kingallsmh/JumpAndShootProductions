@@ -57,9 +57,49 @@ float width = 5000;
         for(int i = 1; i < 15; i++){
             objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false));
         }
-        for(int i = 21; i < 40; i++){
+        for(int i = 21; i < 30; i++){
             objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
         }
+        
+        for(int i = 38; i < 42; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        int climb = 48;
+        for(int i = 45; i < 50; i++){
+            climb += 16;
+            objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false));
+        }
+        
+        
+        for(int i = 55; i < 70; i++){
+            objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 78; i < 84; i++){
+            objectList.add(new Floor(i*16, 117, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 90; i < 96; i++){
+            objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false));
+        }
+        
+        
+        for(int i = 105; i < 135; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 115; i < 125; i++){
+            objectList.add(new Floor(i*16, 64, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 140; i <170 ; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        
+        
+        
+        
         
         this.main = new Main(this);
         this.projectileList = new ArrayList<Projectiles>();
@@ -93,7 +133,7 @@ float width = 5000;
         for(int i = 0; i < projectileList.size(); i++){
             projectileList.get(i).Update();
             projectileList.get(i).Render(batch);
-            projectileList.get(i).DetectCollision(objectList, projectileList, enemyList.get(0));
+            projectileList.get(i).DetectCollisionWithMain(objectList, projectileList, main);
         }
         
         CheckDeath(batch);
