@@ -108,4 +108,5 @@ public class ForestKnight extends GameCharacter{
             state = State.IDLE;
         }
     }
+
 }

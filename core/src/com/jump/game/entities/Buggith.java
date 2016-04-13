@@ -476,4 +476,5 @@ public class Buggith extends GameCharacter{
         
         batch.setColor(1, 1, 1, 1f);
     }
+
 }

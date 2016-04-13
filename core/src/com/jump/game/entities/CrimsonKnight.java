@@ -62,5 +62,6 @@ public class CrimsonKnight extends GameCharacter{
         moveAnim = new Animation(0.25f, moveFrame);
         atkAnim = new Animation(0.4f, atkFrame);
     }
+
     
 }

@@ -62,4 +62,5 @@ public class DepthKnight extends GameCharacter{
         moveAnim = new Animation(0.25f, moveFrame);
         atkAnim = new Animation(0.2f, atkFrame);
     }
+
 }

@@ -24,7 +24,7 @@ public abstract class Stage {
     public OrthographicCamera cam;
     public boolean stageOver = false;
     ArrayList<Environment> objectList;
-    ArrayList<GameCharacter> enemyList;
+    public ArrayList<GameCharacter> enemyList;
     public ArrayList<Projectiles> projectileList;
     
     public abstract void CalculateCollisions(GameCharacter gChar);

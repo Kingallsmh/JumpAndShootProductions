@@ -24,7 +24,7 @@ public abstract class GameCharacter {
     MainController pc;
     Stage stage;
     
-    int hp;
+    public int hp = 100;
     float xVelocity = 0;
     float yVelocity = 0;
     float maxXVelocity;
@@ -61,6 +61,13 @@ public abstract class GameCharacter {
     }
     
     public void CharacterLoop(float time){
+        
+        if(hp <= 0 )
+        {
+            Die();
+            return;
+        }        
+        
          pc.ListenForInput();
          if(pause == false){
             if(state != State.BUSY){
@@ -196,6 +203,9 @@ public abstract class GameCharacter {
         }
     }
     public void Hit(){
+        
+        //System.out.println("hit");
+        
         if(state == State.HIT || isInvincible){
             if(hitCounter % 5 == 1){
                 if(hitColor == 1f){
@@ -208,6 +218,8 @@ public abstract class GameCharacter {
             if(hitCounter == 0){
                 isInvincible = true;
                 state = State.IDLE;
+                this.hp -=35;
+                //System.out.println("hit");
             }
             if(hitCounter >= 200){
                 hitCounter = 0;
@@ -313,6 +325,7 @@ public abstract class GameCharacter {
         if(!isInvincible){
             for(GameCharacter enemy : enemyList){
                 if(hitBox.overlaps(enemy.hitBox)){
+                    //isInvincible = true;
                     if(WCollide.overlaps(enemy.hitBox)){
                         xVelocity = Gdx.graphics.getDeltaTime() * 30;
                         y += 1;
@@ -346,5 +359,9 @@ public abstract class GameCharacter {
         batch.setColor(1, 1, 1, 1f);
     }
     
+    public void Die()
+    {
+        this.stage.enemyList.remove(this);
+    }
     
 }

@@ -91,6 +91,7 @@ public class Main extends GameCharacter{
             if(this.pause == false){
                 if(state != State.BUSY){
 
+                //this.EnemyDetect(stage.enemyList);
                     Gravity();
                     if(state != State.ATTACK && state != State.HIT && state != State.BAG){
                         CharacterMoving();
@@ -170,6 +171,11 @@ public class Main extends GameCharacter{
         bag.Render(batch);
         super.Render(batch, delta); //To change body of generated methods, choose Tools | Templates.
         
+    }
+
+    @Override
+    public void Die() {
+        //KillPlayer();
     }
     
     
