@@ -68,7 +68,6 @@ public class Bag {
         else{
             inTheBag.add(pickup);
             currentSize += pickup.bagSizeValue;
-            System.out.println(currentSize);
         }
     }
     

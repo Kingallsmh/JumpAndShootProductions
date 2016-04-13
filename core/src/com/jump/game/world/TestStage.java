@@ -37,19 +37,18 @@ float width = 5000;
 
     public TestStage(OrthographicCamera cam, int savePoint){
         
+        this.savePoint = savePoint;
         //Save points
         switch (savePoint){
             case 0: 
                 this.xStart = 30;
-                this.yStart = 20;
+                this.yStart = 24;
                 break;
             case 1:
+                this.xStart = 1020;
+                this.yStart = 194;
                 break;
         }
-        
-        
-        
-        
         
         this.objectList = new ArrayList<Environment>();
         camFuncs = new Camera(cam);
@@ -155,6 +154,8 @@ float width = 5000;
     public void RenderStage(SpriteBatch batch, float time) {
         camFuncs.FollowPlayer(main, width);
         
+        CheckpointReached();
+        
         for (Environment objectList1 : objectList) {
             objectList1.RenderBackground(batch);
         }
@@ -180,12 +181,10 @@ float width = 5000;
     
     public void CheckDeath(SpriteBatch batch){
               
-        //System.out.println(main.hp);
         if(main.hp <=0)
         {
             
             KillPlayer(batch);
-            //System.out.println(main.hp);
         }
         
         if(main.y < 0-20-main.height){
@@ -214,6 +213,13 @@ float width = 5000;
             if(!camFuncs.IsOnScreen(projectileList.get(i).hitbox.x)){
                 projectileList.remove(projectileList.get(i));
             }
+        }
+    }
+
+    @Override
+    public void CheckpointReached() {
+        if(savePoint < 1 && main.x > 1020){
+            savePoint = 1;
         }
     }
     

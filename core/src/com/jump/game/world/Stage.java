@@ -26,9 +26,10 @@ public abstract class Stage {
     ArrayList<Environment> objectList;
     public ArrayList<GameCharacter> enemyList;
     public ArrayList<Projectiles> projectileList;
-    
+    public int savePoint;
     float xStart, yStart;
     
+    public abstract void CheckpointReached();
     public abstract void CalcOnScreen();
     public abstract void CalculateCollisions(GameCharacter gChar);
     public abstract void RenderStage(SpriteBatch batch, float time);

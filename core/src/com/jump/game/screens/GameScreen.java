@@ -50,7 +50,7 @@ public class GameScreen implements Screen{
     
     public void newStage()
     {
-        test = new TestStage(cam, 0);
+        test = new TestStage(cam, test.savePoint);
     }
     
     @Override

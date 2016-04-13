@@ -203,8 +203,6 @@ public abstract class GameCharacter {
     }
     public void Hit(){
         
-        //System.out.println("hit");
-        
         if(state == State.HIT || isInvincible){
             if(hitCounter % 5 == 1){
                 if(hitColor == 1f){
@@ -218,7 +216,6 @@ public abstract class GameCharacter {
                 isInvincible = true;
                 state = State.IDLE;
                 DamageCharacter(33);
-                //System.out.println("hit");
             }
             if(hitCounter >= 200){
                 hitCounter = 0;
@@ -342,7 +339,6 @@ public abstract class GameCharacter {
                         yVelocity = Gdx.graphics.getDeltaTime() * 40;
                     }
                     state = State.HIT;
-                    System.out.println("Hit");
                 }
             }
         }
@@ -363,6 +359,8 @@ public abstract class GameCharacter {
             batch.draw(currentFrame, x + xAdjust, y + yAdjust);
         }
         batch.setColor(1, 1, 1, 1f);
+        System.out.println("X: "+this.x);
+        System.out.println("Y: " + this.y);
     }
     
     public void Die()
