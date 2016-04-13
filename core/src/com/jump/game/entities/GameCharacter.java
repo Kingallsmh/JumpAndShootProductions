@@ -71,7 +71,6 @@ public abstract class GameCharacter {
          pc.ListenForInput();
          if(pause == false){
             if(state != State.BUSY){
-
                 Gravity();
                 if(state != State.ATTACK && state != State.HIT){
                     CharacterMoving();

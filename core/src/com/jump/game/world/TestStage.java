@@ -43,8 +43,9 @@ float width = 5000;
         this.name = "Test";
         loserFont = new BitmapFont();
         
+        //The first tiles of the level
         for(int i = 0; i < 10; i++){
-            if(i == 0){
+            if(i == 5){
                 objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
             }
             else{
@@ -52,19 +53,31 @@ float width = 5000;
             }
             
         }
-        objectList.add(new Floor(10*16, 16, Tiles.TOPCORNER, true, 1));
+        //Corners for the step up
+        objectList.add(new Floor(10*16, 16, Tiles.TOPCORNER, true, 0));
         objectList.add(new Floor(20*16, 16, Tiles.TOPCORNER, false, 0));
         for(int i = 11; i < 20; i++){
             objectList.add(new Floor(i*16, 16, Tiles.GRASS2, false, 0));
         }
-        for(int i = 10; i < 21; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false, 0));
+        for(int i = 10; i < 21; i++){       
+            if(i == 10){
+                objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false, 1));
+            }else{
+                objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false, 0));
+            }
+            
         }
+        //Wall on left side
         for(int i = 1; i < 15; i++){
             objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false, 0));
         }
+        
         for(int i = 21; i < 30; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            if(i == 29){
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
+            }else{
+                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            }
         }
         
         for(int i = 38; i < 42; i++){
@@ -126,6 +139,10 @@ float width = 5000;
         camFuncs.FollowPlayer(main, width);
         
         for (Environment objectList1 : objectList) {
+            objectList1.RenderBackground(batch);
+        }
+        
+        for (Environment objectList1 : objectList) {
             objectList1.RenderObject(batch);
         }
         for (GameCharacter enemyL : enemyList){
@@ -142,6 +159,7 @@ float width = 5000;
         }
         
         CheckDeath(batch);
+        CalcOnScreen();
     }
     
     public void CheckDeath(SpriteBatch batch){
@@ -166,6 +184,15 @@ float width = 5000;
        loserFont.setColor(0, 0, 0, 1);
        loserFont.draw(batch, "YOU LOSE", camFuncs.cam.position.x, camFuncs.cam.position.y);
        main.pause = true;
+    }
+
+    @Override
+    public void CalcOnScreen() {
+        for(int i = 0; i < enemyList.size(); i++){
+            if(!camFuncs.IsOnScreen(enemyList.get(i).x)){
+                enemyList.get(i).pause = true;
+            }
+        }
     }
     
 }

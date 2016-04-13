@@ -16,6 +16,15 @@ import com.badlogic.gdx.math.Rectangle;
  */
 public class Floor extends Environment{
 
+    @Override
+    public void RenderBackground(SpriteBatch batch) {
+        if(drawThing == 1){
+            batch.draw(bush, x, y + 16);
+        }else if(drawThing == 2){
+            batch.draw(noselessTom, x - noselessTom.getWidth()/2, y + 16);
+        }
+    }
+
     enum Tiles{
         GRASS1, GRASS2, UNDERGROUND, TOPCORNER, DIRTWALL
     }
@@ -69,13 +78,7 @@ public class Floor extends Environment{
     }
 
     @Override
-    public void RenderObject(SpriteBatch batch) {
-        if(drawThing == 1){
-            batch.draw(bush, x, y);
-        }else if(drawThing == 2){
-            batch.draw(noselessTom, x, y);
-        }
-        
+    public void RenderObject(SpriteBatch batch) {               
         if(!flipX){
             batch.draw(pic, x, y);
         }

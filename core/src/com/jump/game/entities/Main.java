@@ -36,7 +36,7 @@ public class Main extends GameCharacter{
         this.jump = 250;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 200;
+        this.x = 100;
         this.y = 130;
         // Use image file to figure this out
         this.width = 16;

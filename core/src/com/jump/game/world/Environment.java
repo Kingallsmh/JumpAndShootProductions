@@ -34,4 +34,5 @@ public abstract class Environment {
     public abstract void UpdateObject();
     public abstract void CollisionHandler();
     public abstract void RenderObject(SpriteBatch batch);
+    public abstract void RenderBackground(SpriteBatch batch);
 }

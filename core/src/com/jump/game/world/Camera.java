@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Camera {
     OrthographicCamera cam;
     
+    
     public Camera(OrthographicCamera cam){
         this.cam = cam;
     }
@@ -33,6 +34,16 @@ public class Camera {
         else{
             cam.position.x = gChar.x; 
         }
+    }
+    
+    public boolean IsOnScreen(float x){
+        if(x < cam.position.x - Configurations.cameraWidth/2){
+            return false;
+        }
+        else if(x > cam.position.x + Configurations.cameraWidth/2){
+            return false;
+        }
         
+        return true;
     }
 }

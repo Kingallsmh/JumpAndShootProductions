@@ -74,5 +74,6 @@ public abstract class Projectiles{
     
     public void Render(SpriteBatch batch){
         batch.draw(projectilePic, x - 16, y - 16, 16, 16, 32, 32, 1, 1, (float) angle);
+        
     }
 }
