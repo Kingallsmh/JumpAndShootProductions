@@ -57,8 +57,17 @@ float width = 5000;
         for(int i = 1; i < 15; i++){
             objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false));
         }
-        for(int i = 21; i < 40; i++){
+        for(int i = 21; i < 30; i++){
             objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 38; i < 42; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        int climb = 48;
+        for(int i = 45; i < 50; i++){
+            climb += 16;
+            objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false));
         }
         
         this.main = new Main(this);
