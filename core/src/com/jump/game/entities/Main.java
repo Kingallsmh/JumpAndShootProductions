@@ -12,6 +12,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jump.game.controllers.PlayerController;
 import com.jump.game.world.Stage;
+import com.jump.game.world.TestStage;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.jump.game.Configurations;
+import com.jump.game.screens.GameScreen;
 
 /**
  *
@@ -99,6 +103,13 @@ public class Main extends GameCharacter{
                 CharacterUpdate(time);
                 AnimationLoop(time);
         
+            }else{
+                if(pc.action)
+                {
+                    this.pause = false;
+                    //stage = new TestStage(new OrthographicCamera(Configurations.cameraWidth, Configurations.cameraHeight));
+                    stage.stageOver = true;
+                }
             }
     }
     

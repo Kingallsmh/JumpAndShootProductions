@@ -33,7 +33,7 @@ public class TestStage extends Stage{
 
 Camera camFuncs;
 BitmapFont loserFont;
-OrthographicCamera cam;
+
 float width = 5000;
 
 
@@ -101,7 +101,7 @@ float width = 5000;
     
     public void CheckDeath(SpriteBatch batch){
               
-        if(main.y < 0){
+        if(main.y < 0-20-main.height){
            loserFont.setColor(0, 0, 0, 1);
            loserFont.draw(batch, "YOU LOSE", camFuncs.cam.position.x, camFuncs.cam.position.y);
            main.pause = true;

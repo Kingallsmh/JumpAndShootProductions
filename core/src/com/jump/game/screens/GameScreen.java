@@ -44,12 +44,23 @@ public class GameScreen implements Screen{
         test = new TestStage(cam);
     }
     
+    public void newStage()
+    {
+        test = new TestStage(cam);
+    }
+    
     @Override
     public void show() {
     }
 
     @Override
     public void render(float delta) {
+        
+        if(test.stageOver)
+        {
+            newStage();
+        }
+        
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         cam.update();

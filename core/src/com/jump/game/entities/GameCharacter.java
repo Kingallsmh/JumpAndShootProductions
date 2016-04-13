@@ -74,8 +74,8 @@ public abstract class GameCharacter {
             Hit();
             CharacterUpdate(time);
             AnimationLoop(time);
-            CheckDeath();
-             }
+            //CheckDeath();
+         }
         
     }
     
@@ -344,17 +344,6 @@ public abstract class GameCharacter {
             batch.draw(currentFrame, x + xAdjust, y + yAdjust);
         }
         batch.setColor(1, 1, 1, 1f);
-    }
-    
-    public void CheckDeath(){
-        
-        if(this.y < 0){
-            //if too low
-            
-            
-            
-        }
-    
     }
     
     
