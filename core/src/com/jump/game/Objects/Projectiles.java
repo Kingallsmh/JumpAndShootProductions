@@ -45,7 +45,7 @@ public abstract class Projectiles{
     
     public abstract void Update();
     
-    public void DetectCollision(ArrayList<Environment> environList, ArrayList<Projectiles> pList, GameCharacter gChar){
+    public void DetectCollisionWithMain(ArrayList<Environment> environList, ArrayList<Projectiles> pList, GameCharacter gChar){
         for(Environment objectList1 : environList){
             if(hitbox.overlaps(objectList1.hitbox)){
                 pList.remove(this);
@@ -56,7 +56,19 @@ public abstract class Projectiles{
             pList.remove(this);
             gChar.state = State.HIT;
         }
-        
+    }
+    
+    public void DetectCollisionWithEnemy(ArrayList<Environment> environList, ArrayList<Projectiles> pList, ArrayList<GameCharacter> enemyList){
+        for(Environment objectList1 : environList){
+            if(hitbox.overlaps(objectList1.hitbox)){
+                pList.remove(this);
+                break;
+            }
+        }
+        if(hitbox.overlaps(gChar.hitBox) && !gChar.isInvincible){
+            pList.remove(this);
+            gChar.state = State.HIT;
+        }
     }
     
     public void Render(SpriteBatch batch){

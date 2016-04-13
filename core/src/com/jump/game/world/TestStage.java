@@ -88,7 +88,7 @@ float width = 5000;
         for(int i = 0; i < projectileList.size(); i++){
             projectileList.get(i).Update();
             projectileList.get(i).Render(batch);
-            projectileList.get(i).DetectCollision(objectList, projectileList, enemyList.get(0));
+            projectileList.get(i).DetectCollisionWithMain(objectList, projectileList, main);
         }
         
     }
