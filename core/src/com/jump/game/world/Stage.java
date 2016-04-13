@@ -5,6 +5,7 @@
  */
 package com.jump.game.world;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jump.game.Objects.Projectiles;
 import com.jump.game.entities.Bag;
@@ -20,6 +21,8 @@ public abstract class Stage {
     String name;
     public GameCharacter main;
     public Bag b;
+    public OrthographicCamera cam;
+    public boolean stageOver = false;
     ArrayList<Environment> objectList;
     ArrayList<GameCharacter> enemyList;
     public ArrayList<Projectiles> projectileList;

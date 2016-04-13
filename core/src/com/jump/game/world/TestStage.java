@@ -17,6 +17,7 @@ import com.jump.game.entities.CrimsonKnight;
 import com.jump.game.entities.DepthKnight;
 import com.jump.game.entities.ForestKnight;
 import com.jump.game.entities.GameCharacter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jump.game.entities.Kibble;
 import com.jump.game.entities.Main;
 import com.jump.game.world.Floor.Tiles;
@@ -28,8 +29,11 @@ import java.util.ArrayList;
  */
 public class TestStage extends Stage{
 
+    
+
 Camera camFuncs;
-OrthographicCamera cam;
+BitmapFont loserFont;
+
 float width = 5000;
 
 
@@ -37,6 +41,7 @@ float width = 5000;
         this.objectList = new ArrayList<Environment>();
         camFuncs = new Camera(cam);
         this.name = "Test";
+        loserFont = new BitmapFont();
         
         for(int i = 0; i < 10; i++){
             objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
@@ -52,9 +57,49 @@ float width = 5000;
         for(int i = 1; i < 15; i++){
             objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false));
         }
-        for(int i = 21; i < 40; i++){
+        for(int i = 21; i < 30; i++){
             objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
         }
+        
+        for(int i = 38; i < 42; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        int climb = 48;
+        for(int i = 45; i < 50; i++){
+            climb += 16;
+            objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false));
+        }
+        
+        
+        for(int i = 55; i < 70; i++){
+            objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 78; i < 84; i++){
+            objectList.add(new Floor(i*16, 117, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 90; i < 96; i++){
+            objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false));
+        }
+        
+        
+        for(int i = 105; i < 135; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 115; i < 125; i++){
+            objectList.add(new Floor(i*16, 64, Tiles.GRASS1, false));
+        }
+        
+        for(int i = 140; i <170 ; i++){
+            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false));
+        }
+        
+        
+        
+        
+        
         
         this.main = new Main(this);
         this.projectileList = new ArrayList<Projectiles>();
@@ -90,6 +135,18 @@ float width = 5000;
             projectileList.get(i).Render(batch);
             projectileList.get(i).DetectCollisionWithMain(objectList, projectileList, main);
         }
+        
+        CheckDeath(batch);
+    }
+    
+    public void CheckDeath(SpriteBatch batch){
+              
+        if(main.y < 0-20-main.height){
+           loserFont.setColor(0, 0, 0, 1);
+           loserFont.draw(batch, "YOU LOSE", camFuncs.cam.position.x, camFuncs.cam.position.y);
+           main.pause = true;
+        }
+        
         
     }
     
