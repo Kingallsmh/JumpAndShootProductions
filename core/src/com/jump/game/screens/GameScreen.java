@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jump.game.Configurations;
 import com.jump.game.world.Environment;
 import com.jump.game.world.Stage;
+import com.jump.game.world.TestStage2;
 import com.jump.game.world.TestStage;
 
 /**
