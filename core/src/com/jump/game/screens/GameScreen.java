@@ -18,6 +18,7 @@ import com.jump.game.Configurations;
 import com.jump.game.world.Environment;
 import com.jump.game.world.Stage;
 import com.jump.game.world.TestStage2;
+import com.jump.game.world.TestStage;
 
 /**
  *
@@ -33,7 +34,6 @@ public class GameScreen implements Screen{
     OrthographicCamera cam;
     Environment floor;
     Stage test;
-    Texture cloud, sun;
 
     public GameScreen(SpriteBatch batch, int difficulty){
         //Using for testing and debugging
@@ -43,16 +43,14 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage2(cam, 0, difficulty);
-        cloud = new Texture("cloud1.png");
-        sun = new Texture("sun.png");
+        test = new TestStage(cam, 0, difficulty);
     }
     
     public void newStage(int difficulty)
     {
         int save = test.savePoint;
         test = null;
-        test = new TestStage2(cam, save, difficulty);
+        test = new TestStage(cam, save, difficulty);
     }
     
     @Override
@@ -72,11 +70,6 @@ public class GameScreen implements Screen{
         cam.update();
 	batch.setProjectionMatrix(cam.combined);
 	batch.begin();
-        //Draw clouds
-        batch.draw(sun, cam.position.x - 40, cam.position.y);
-        batch.draw(cloud, cam.position.x, cam.position.y);
-        batch.draw(cloud, cam.position.x - 80, cam.position.y - 70);
-        batch.draw(cloud, cam.position.x - 190, cam.position.y - 10);
         
         // Start drawing here
         test.RenderStage(batch, delta);
