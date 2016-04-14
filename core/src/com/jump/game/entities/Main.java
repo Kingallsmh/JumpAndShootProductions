@@ -24,7 +24,7 @@ import com.jump.game.screens.GameScreen;
 public class Main extends GameCharacter{
     
     TextureRegion grabFrame[];
-    TextureRegion holdBagFrame;
+    TextureRegion holdBagFrame, health;
     Animation grabAnim;
     public Bag bag;
     

@@ -234,6 +234,9 @@ float width = 5000;
             if(!camFuncs.IsOnScreen(enemyList.get(i).x)){
                 enemyList.get(i).pause = true;
             }
+            else if(camFuncs.IsOnScreen(enemyList.get(i).x)){
+                enemyList.get(i).pause = false;
+            }
         }
         
         for(int i = 0; i < projectileList.size(); i++){

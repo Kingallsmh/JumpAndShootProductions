@@ -34,7 +34,7 @@ public class GameScreen implements Screen{
     Environment floor;
     Stage test;
 
-    public GameScreen(SpriteBatch batch, int difficulty){
+    public GameScreen(SpriteBatch batch){
         //Using for testing and debugging
         testShapes = new ShapeRenderer();
         testFont = new BitmapFont();
@@ -42,7 +42,7 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam, 0, difficulty);
+        test = new TestStage(cam, 0, 0);
     }
     
     public void newStage(int difficulty)
