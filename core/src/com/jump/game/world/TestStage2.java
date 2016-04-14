@@ -142,7 +142,7 @@ float width = 5000;
                 objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 2));
             }
             else if(i == 99){
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 3));
+                objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 0));
             }
             else{
                 objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 0));
@@ -154,7 +154,7 @@ float width = 5000;
         this.main = new Main(this, xStart, yStart, difficulty);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
-        this.enemyList.add(new ForestKnight(this, 250, 40, difficulty));
+        this.enemyList.add(new ForestKnight(this, 350, 40, difficulty));
         this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
         this.projectileList.add(new SackFlame(30,60));
@@ -223,6 +223,9 @@ float width = 5000;
         for(int i = 0; i < enemyList.size(); i++){
             if(!camFuncs.IsOnScreen(enemyList.get(i).x)){
                 enemyList.get(i).pause = true;
+            }
+            else if(camFuncs.IsOnScreen(enemyList.get(i).x)){
+                enemyList.get(i).pause = false;
             }
         }
         
