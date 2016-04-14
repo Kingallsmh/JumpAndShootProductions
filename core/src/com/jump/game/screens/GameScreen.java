@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jump.game.Configurations;
 import com.jump.game.world.Environment;
 import com.jump.game.world.Stage;
-import com.jump.game.world.TestStage;
+import com.jump.game.world.TestStage2;
 
 /**
  *
@@ -43,7 +43,7 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam, 0, difficulty);
+        test = new TestStage2(cam, 0, difficulty);
         cloud = new Texture("cloud1.png");
         sun = new Texture("sun.png");
     }
@@ -52,7 +52,7 @@ public class GameScreen implements Screen{
     {
         int save = test.savePoint;
         test = null;
-        test = new TestStage(cam, save, difficulty);
+        test = new TestStage2(cam, save, difficulty);
     }
     
     @Override
