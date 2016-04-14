@@ -8,10 +8,17 @@ import com.jump.game.screens.GameScreen;
 public class MainGame extends Game{
 	SpriteBatch batch;
 	
+        int difficulty = 3;
+        
+        public void setDifficulty(int difficulty)
+        {
+            this.difficulty = difficulty;
+        }
+        
 	@Override
 	public void create () {
             batch = new SpriteBatch();
-            this.setScreen(new GameScreen(batch));
+            this.setScreen(new GameScreen(batch, difficulty));
 	}
 
 	@Override

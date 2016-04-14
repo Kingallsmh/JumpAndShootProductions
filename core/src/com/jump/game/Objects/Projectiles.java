@@ -36,6 +36,7 @@ public abstract class Projectiles{
     Texture spriteSheet;
     TextureRegion projectilePic;
     public boolean fromPlayer = false;
+    public int damageDone = 33;
     
     public Projectiles(){
         spriteSheet = new Texture("ProjectilesSheet.png");
@@ -52,6 +53,7 @@ public abstract class Projectiles{
             }
         }
         if(hitbox.overlaps(gChar.hitBox) && !gChar.isInvincible){
+            gChar.damageTaken = this.damageDone;
             pList.remove(this);
             gChar.state = State.HIT;
         }

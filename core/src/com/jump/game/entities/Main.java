@@ -28,7 +28,7 @@ public class Main extends GameCharacter{
     Animation grabAnim;
     public Bag bag;
     
-    public Main(Stage stage, float x, float y){
+    public Main(Stage stage, float x, float y, int difficulty){
         this.x = x;
         this.y = y;
         this.stage = stage;
@@ -84,6 +84,14 @@ public class Main extends GameCharacter{
         moveAnim = new Animation(0.25f, moveFrame);
         atkAnim = new Animation(0.3f, atkFrame);
         grabAnim = new Animation(0.3f, grabFrame);
+        switch(difficulty)
+        {
+            case 0:{SetDamageTaken(33); break;}
+            case 1:{SetDamageTaken(45); break;}
+            case 2:{SetDamageTaken(50); break;}
+            case 3:{SetDamageTaken(101); break;}
+            default:{ SetDamageTaken(33); break;}
+        }
     }
     
     @Override
@@ -102,7 +110,7 @@ public class Main extends GameCharacter{
                     
                     StoreInSack();
                 }
-                Hit();
+                Hit(damageTaken);
                 CharacterUpdate(time);
                 AnimationLoop(time);
         

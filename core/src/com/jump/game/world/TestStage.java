@@ -35,9 +35,10 @@ BitmapFont loserFont;
 
 float width = 5000;
 
-    public TestStage(OrthographicCamera cam, int savePoint){
+    public TestStage(OrthographicCamera cam, int savePoint, int difficulty){
         
         this.savePoint = savePoint;
+        this.difficulty = difficulty;
         //Save points
         switch (savePoint){
             case 0: 
@@ -149,11 +150,11 @@ float width = 5000;
         
         
         
-        this.main = new Main(this, xStart, yStart);
+        this.main = new Main(this, xStart, yStart, difficulty);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
-        this.enemyList.add(new ForestKnight(this, 250, 40));
-        this.enemyList.add(new Kibble(this, 100, 40));
+        this.enemyList.add(new ForestKnight(this, 250, 40, difficulty));
+        this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
         this.projectileList.add(new SackFlame(30,60));
     }

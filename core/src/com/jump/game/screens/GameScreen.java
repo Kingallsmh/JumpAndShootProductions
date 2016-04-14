@@ -35,7 +35,7 @@ public class GameScreen implements Screen{
     Stage test;
     Texture cloud, sun;
 
-    public GameScreen(SpriteBatch batch){
+    public GameScreen(SpriteBatch batch, int difficulty){
         //Using for testing and debugging
         testShapes = new ShapeRenderer();
         testFont = new BitmapFont();
@@ -43,16 +43,16 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam, 0);
+        test = new TestStage(cam, 0, difficulty);
         cloud = new Texture("cloud1.png");
         sun = new Texture("sun.png");
     }
     
-    public void newStage()
+    public void newStage(int difficulty)
     {
         int save = test.savePoint;
         test = null;
-        test = new TestStage(cam, save);
+        test = new TestStage(cam, save, difficulty);
     }
     
     @Override
@@ -64,7 +64,7 @@ public class GameScreen implements Screen{
         
         if(test.stageOver)
         {
-            newStage();
+            newStage(test.difficulty);
         }
         
         Gdx.gl.glClearColor(0.5f, 1, 1, 1);

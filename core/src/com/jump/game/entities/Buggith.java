@@ -29,7 +29,7 @@ public class Buggith extends GameCharacter{
     TextureRegion[] MoveVerticalFrame = new TextureRegion[2];
     Animation moveVerticalAnim; 
     
-    public Buggith(Stage stage){
+    public Buggith(Stage stage, int difficulty){
         this.stage = stage;
         this.pc = new PlayerController();
         this.speed = 30;
@@ -83,6 +83,14 @@ public class Buggith extends GameCharacter{
         moveAnim = new Animation(0.15f, moveFrame);
         moveVerticalAnim = new Animation(0.15f, MoveVerticalFrame);
         jumpAnim = new Animation(0.1f, jumpFrame);
+        switch(difficulty)
+        {
+            case 0:{SetDamageTaken(33); break;}
+            case 1:{SetDamageTaken(45); break;}
+            case 2:{SetDamageTaken(50); break;}
+            case 3:{SetDamageTaken(101); break;}
+            default:{ SetDamageTaken(33); break;}
+        }
     }
     
     @Override

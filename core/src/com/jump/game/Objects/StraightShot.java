@@ -16,7 +16,8 @@ import com.jump.game.entities.GameCharacter;
  */
 public class StraightShot extends Projectiles{
     
-    public StraightShot(GameCharacter gChar, float xVel, float yVel, boolean facingLeft){
+    public StraightShot(GameCharacter gChar, float xVel, float yVel, boolean facingLeft, int damageDone){
+        this.damageDone = damageDone;
         if(facingLeft){
             this.xVel = -xVel;
             angle = 270;
