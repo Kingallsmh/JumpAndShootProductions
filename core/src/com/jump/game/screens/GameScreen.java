@@ -19,6 +19,7 @@ import com.jump.game.world.Environment;
 import com.jump.game.world.Stage;
 import com.jump.game.world.TestStage2;
 import com.jump.game.world.TestStage;
+import com.jump.game.world.TestStage3;
 
 /**
  *
@@ -43,14 +44,14 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage2(cam, 0, 0);
+        test = new TestStage3(cam, 0, 0);
     }
     
     public void newStage(int difficulty)
     {
         int save = test.savePoint;
         test = null;
-        test = new TestStage2(cam, save, difficulty);
+        test = new TestStage3(cam, save, difficulty);
     }
     
     @Override
