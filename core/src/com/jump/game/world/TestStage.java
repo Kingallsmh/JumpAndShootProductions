@@ -8,6 +8,7 @@ package com.jump.game.world;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jump.game.Objects.HomingProjectile;
 import com.jump.game.Objects.Projectiles;
@@ -32,11 +33,15 @@ public class TestStage extends Stage{
 
 Camera camFuncs;
 BitmapFont loserFont;
+Texture cloud, sun;
 
 float width = 5000;
 
     public TestStage(OrthographicCamera cam, int savePoint){
         
+        
+        cloud = new Texture("cloud1.png");
+        sun = new Texture("sun.png");
         this.savePoint = savePoint;
         //Save points
         switch (savePoint){
@@ -167,6 +172,12 @@ float width = 5000;
 
     @Override
     public void RenderStage(SpriteBatch batch, float time) {
+        
+        //Draw clouds
+        batch.draw(sun, camFuncs.cam.position.x - 40, camFuncs.cam.position.y);
+        batch.draw(cloud, camFuncs.cam.position.x, camFuncs.cam.position.y);
+        batch.draw(cloud, camFuncs.cam.position.x - 80, camFuncs.cam.position.y - 70);
+        batch.draw(cloud, camFuncs.cam.position.x - 190, camFuncs.cam.position.y - 10);
         camFuncs.FollowPlayer(main, width);
         
         CheckpointReached();

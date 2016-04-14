@@ -21,7 +21,6 @@ public abstract class Stage {
     String name;
     public GameCharacter main;
     public Bag b;
-    public OrthographicCamera cam;
     public boolean stageOver = false;
     ArrayList<Environment> objectList;
     public ArrayList<GameCharacter> enemyList;

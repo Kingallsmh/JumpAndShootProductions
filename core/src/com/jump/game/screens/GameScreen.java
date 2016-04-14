@@ -33,7 +33,6 @@ public class GameScreen implements Screen{
     OrthographicCamera cam;
     Environment floor;
     Stage test;
-    Texture cloud, sun;
 
     public GameScreen(SpriteBatch batch){
         //Using for testing and debugging
@@ -43,9 +42,7 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam, 1);
-        cloud = new Texture("cloud1.png");
-        sun = new Texture("sun.png");
+        test = new TestStage(cam, 0);
     }
     
     public void newStage()
@@ -70,11 +67,6 @@ public class GameScreen implements Screen{
         cam.update();
 	batch.setProjectionMatrix(cam.combined);
 	batch.begin();
-        //Draw clouds
-        batch.draw(sun, cam.position.x - 40, cam.position.y);
-        batch.draw(cloud, cam.position.x, cam.position.y);
-        batch.draw(cloud, cam.position.x - 80, cam.position.y - 70);
-        batch.draw(cloud, cam.position.x - 190, cam.position.y - 10);
         
         // Start drawing here
         test.RenderStage(batch, delta);
