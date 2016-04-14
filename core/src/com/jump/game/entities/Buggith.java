@@ -29,15 +29,15 @@ public class Buggith extends GameCharacter{
     TextureRegion[] MoveVerticalFrame = new TextureRegion[2];
     Animation moveVerticalAnim; 
     
-    public Buggith(Stage stage, int difficulty){
+    public Buggith(Stage stage, float x, float y, int difficulty){
         this.stage = stage;
         this.pc = new PlayerController();
         this.speed = 30;
         this.jump = 150;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 90;
-        this.y = 60;
+        this.x = x;
+        this.y = y;
         // Use image file to figure this out
         this.width = 15;
         this.height = 15;

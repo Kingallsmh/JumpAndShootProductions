@@ -65,6 +65,7 @@ public class Main extends GameCharacter{
         this.jumpFrame = new TextureRegion[1];
         grabFrame = new TextureRegion[2];
         
+        health = new TextureRegion(spriteSheet, 256, 0, 100, 32);
         for(int i = 0; i < 2; i++){
             idleFrame[i] = new TextureRegion(spriteSheet, (i) * w, 0, w, h);
             grabFrame[i] = new TextureRegion(spriteSheet, i * w, h, w, h);

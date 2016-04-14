@@ -159,9 +159,15 @@ float width = 5000;
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
         this.enemyList.add(new ForestKnight(this, 250, 40, difficulty));
-        this.enemyList.add(new Kibble(this, 100, 40, difficulty));
+        this.enemyList.add(new Kibble(this, 250, 40, difficulty));
+        this.enemyList.add(new Buggith(this, 751, 116, difficulty));
+        this.enemyList.add(new ForestKnight(this, 1062, 196, difficulty));
+        this.enemyList.add(new ForestKnight(this, 1841, 80, difficulty));
+        this.enemyList.add(new ForestKnight(this, 2072, 20, difficulty));
+        this.enemyList.add(new Kibble(this, 1750, 20, difficulty));
+        this.enemyList.add(new Buggith(this, 1841, 20, difficulty));
         
-        this.projectileList.add(new SackFlame(30,60));
+        this.projectileList.add(new SackFlame(100,60));
     }
     
     
@@ -204,6 +210,7 @@ float width = 5000;
         
         CheckDeath(batch);
         CalcOnScreen();
+        System.out.println("X: " + main.x + " Y: " + main.y);
     }
     
     public void CheckDeath(SpriteBatch batch){

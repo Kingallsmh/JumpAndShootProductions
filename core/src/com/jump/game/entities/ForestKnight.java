@@ -27,12 +27,13 @@ public class ForestKnight extends GameCharacter{
     public ForestKnight(Stage stage, float x, float y, int difficulty){
         this.stage = stage;
         this.pc = new AIShootingController();
+        this.facingLeft = true;
         this.speed = 60;
         this.jump = 250;
         this.maxXVelocity = 3;
         this.maxYVelocity = 3;
-        this.x = 200;
-        this.y = 130;
+        this.x = x;
+        this.y = y;
         // Use image file to figure this out
         this.width = 16;
         this.height = 28;
