@@ -27,6 +27,7 @@ public abstract class Stage {
     public ArrayList<Projectiles> projectileList;
     public int savePoint;
     float xStart, yStart;
+    public int difficulty;
     
     public abstract void CheckpointReached();
     public abstract void CalcOnScreen();

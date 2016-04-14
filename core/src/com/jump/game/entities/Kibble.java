@@ -19,7 +19,7 @@ import com.jump.game.world.Stage;
  */
 public class Kibble extends GameCharacter{
     
-    public Kibble(Stage stage, float x, float y){
+    public Kibble(Stage stage, float x, float y, int difficulty){
         this.stage = stage;
         this.pc = new AIPassiveController();
         this.speed = 30;
@@ -64,6 +64,15 @@ public class Kibble extends GameCharacter{
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.15f, moveFrame);
         jumpAnim = new Animation(0.1f, jumpFrame);
+        
+        switch(difficulty)
+        {
+            case 0:{SetDamageTaken(33); break;}
+            case 1:{SetDamageTaken(45); break;}
+            case 2:{SetDamageTaken(50); break;}
+            case 3:{SetDamageTaken(101); break;}
+            default:{ SetDamageTaken(33); break;}
+        }
     }
     
 

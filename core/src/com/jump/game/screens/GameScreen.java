@@ -34,7 +34,7 @@ public class GameScreen implements Screen{
     Environment floor;
     Stage test;
 
-    public GameScreen(SpriteBatch batch){
+    public GameScreen(SpriteBatch batch, int difficulty){
         //Using for testing and debugging
         testShapes = new ShapeRenderer();
         testFont = new BitmapFont();
@@ -42,12 +42,14 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam, 0);
+        test = new TestStage(cam, 0, difficulty);
     }
     
-    public void newStage()
+    public void newStage(int difficulty)
     {
-        test = new TestStage(cam, test.savePoint);
+        int save = test.savePoint;
+        test = null;
+        test = new TestStage(cam, save, difficulty);
     }
     
     @Override
@@ -59,7 +61,7 @@ public class GameScreen implements Screen{
         
         if(test.stageOver)
         {
-            newStage();
+            newStage(test.difficulty);
         }
         
         Gdx.gl.glClearColor(0.5f, 1, 1, 1);

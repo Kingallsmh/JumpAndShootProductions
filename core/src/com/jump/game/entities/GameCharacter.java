@@ -60,6 +60,8 @@ public abstract class GameCharacter {
         IDLE, MOVE, ATTACK, JUMP, MELEE, BAG, BUSY, HIT;
     }
     
+    public int damageTaken = 33;//Default Value, char has 100 hp by default
+    
     public void CharacterLoop(float time){
         
         if(hp <= 0 )
@@ -77,7 +79,7 @@ public abstract class GameCharacter {
                 }
                 Attack();
             }
-            Hit();
+            Hit(damageTaken);
             CharacterUpdate(time);
             AnimationLoop(time);
             //CheckDeath();
@@ -201,7 +203,7 @@ public abstract class GameCharacter {
             proC = 0;
         }
     }
-    public void Hit(){
+    public void Hit(int damageTaken){
         
         if(state == State.HIT || isInvincible){
             if(hitCounter % 5 == 1){
@@ -215,7 +217,7 @@ public abstract class GameCharacter {
             if(hitCounter == 0){
                 isInvincible = true;
                 state = State.IDLE;
-                DamageCharacter(33);
+                DamageCharacter(damageTaken);
             }
             if(hitCounter >= 200){
                 hitCounter = 0;
@@ -366,6 +368,11 @@ public abstract class GameCharacter {
     public void Die()
     {
         this.stage.enemyList.remove(this);
+    }
+    
+    public void SetDamageTaken( int newValue)
+    {
+        this.damageTaken = newValue;
     }
     
 }

@@ -24,7 +24,7 @@ public class ForestKnight extends GameCharacter{
     
     boolean throwDown = false;
     
-    public ForestKnight(Stage stage, float x, float y){
+    public ForestKnight(Stage stage, float x, float y, int difficulty){
         this.stage = stage;
         this.pc = new AIShootingController();
         this.speed = 60;
@@ -69,6 +69,16 @@ public class ForestKnight extends GameCharacter{
         idleAnim = new Animation(0.4f, idleFrame);
         moveAnim = new Animation(0.25f, moveFrame);
         atkAnim = new Animation(0.3f, atkFrame);
+        
+        switch(difficulty)
+        {
+            case 0:{SetDamageTaken(33); break;}
+            case 1:{SetDamageTaken(45); break;}
+            case 2:{SetDamageTaken(50); break;}
+            case 3:{SetDamageTaken(101); break;}
+            default:{ SetDamageTaken(33); break;}
+        }
+        
     }
     
     @Override
@@ -87,10 +97,10 @@ public class ForestKnight extends GameCharacter{
         
         if(proC == 15){
             if(throwDown){
-                stage.projectileList.add(new StraightShot(this, 0, -2, facingLeft));
+                stage.projectileList.add(new StraightShot(this, 0, -2, facingLeft, damageTaken));
             }
             else{
-                stage.projectileList.add(new StraightShot(this, 2, 0, facingLeft));
+                stage.projectileList.add(new StraightShot(this, 2, 0, facingLeft, damageTaken));
             }
             throwDown = false;
         }
