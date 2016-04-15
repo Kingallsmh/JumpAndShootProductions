@@ -158,6 +158,12 @@ float width = 5000;
         this.enemyList.add(new ForestKnight(this, 350, 40, difficulty));
         this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
+        for(int i = 0; i <10; i++){
+            this.enemyList.add(new Kibble(this, (float) (60*16) + (i*10), 208, difficulty));
+        }
+
+        
+        
         this.projectileList.add(new SackFlame(30,60));
     }
     

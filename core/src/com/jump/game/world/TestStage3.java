@@ -103,6 +103,7 @@ float width = 5000;
             objectList.add(new Floor(sS, i*16, climb, Floor.Tiles.GRASS1, false, 2));
             climb += 16;
         }
+        objectList.add(new Floor(36*16, 48, Floor.Tiles.GRASS1, false, 2)); 
         //triple selection of death
         for(int i=37; i < 70;i++){
             if(i > 39){
@@ -111,6 +112,7 @@ float width = 5000;
             objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 2));
             objectList.add(new Floor(sS, i*16, 200 , Floor.Tiles.GRASS1, false, 2));
         }
+        
         
         for(int i=0; i<201;i += 16){
             objectList.add(new Floor(sS, 70*16, i, Floor.Tiles.GRASS1, false, 0));        
@@ -129,8 +131,11 @@ float width = 5000;
         this.enemyList.add(new ForestKnight(this, 250, 40, difficulty));
         this.enemyList.add(new ForestKnight(this, 55*16, 20, difficulty));
         this.enemyList.add(new ForestKnight(this, 55*16, 120, difficulty));
-         this.enemyList.add(new ForestKnight(this, 55*16, 220, difficulty));
-         this.enemyList.add(new ForestKnight(this, 92*16, 18, difficulty));
+        this.enemyList.add(new ForestKnight(this, 55*16, 220, difficulty));
+        this.enemyList.add(new ForestKnight(this, 50*16, 20, difficulty));
+        this.enemyList.add(new ForestKnight(this, 50*16, 120, difficulty));
+        this.enemyList.add(new ForestKnight(this, 50*16, 220, difficulty));
+        this.enemyList.add(new ForestKnight(this, 92*16, 18, difficulty));
         this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
         this.projectileList.add(new SackFlame(30,60));
