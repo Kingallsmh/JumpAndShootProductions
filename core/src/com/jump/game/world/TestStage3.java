@@ -103,7 +103,7 @@ float width = 5000;
             objectList.add(new Floor(sS, i*16, climb, Floor.Tiles.GRASS1, false, 2));
             climb += 16;
         }
-        objectList.add(new Floor(36*16, 48, Floor.Tiles.GRASS1, false, 2)); 
+        objectList.add(new Floor(sS, 36*16, 48, Floor.Tiles.GRASS1, false, 2)); 
         //triple selection of death
         for(int i=37; i < 70;i++){
             if(i > 39){
