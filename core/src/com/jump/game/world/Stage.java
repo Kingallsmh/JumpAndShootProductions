@@ -29,6 +29,7 @@ public abstract class Stage {
     float xStart, yStart;
     public int difficulty;
     public int sS;
+    public boolean win = false;
     
     public abstract void CheckpointReached();
     public abstract void CalcOnScreen();

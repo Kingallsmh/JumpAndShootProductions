@@ -138,7 +138,8 @@ float width = 5000;
         this.enemyList.add(new ForestKnight(this, 92*16, 18, difficulty));
         this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
-        this.projectileList.add(new SackFlame(30,60));
+        this.projectileList.add(new SackFlame(1, 30,60));
+        this.projectileList.add(new SackFlame(2, 94 * 16, 20));
     }
     
     
@@ -151,7 +152,7 @@ float width = 5000;
     @Override
     public void RenderStage(SpriteBatch batch, float time) {
         camFuncs.FollowPlayer(main, width);
-        
+        WinStage(batch);
         CheckpointReached();
         
         for (Environment objectList1 : objectList) {
@@ -175,6 +176,14 @@ float width = 5000;
         
         CheckDeath(batch);
         CalcOnScreen();
+    }
+    
+    public void WinStage(SpriteBatch batch){
+        if(win){
+            loserFont.setColor(0, 0, 0, 1);
+            loserFont.draw(batch, "YOU WIN!!!!", camFuncs.cam.position.x, camFuncs.cam.position.y);
+            main.pause = true;
+        }
     }
     
     public void CheckDeath(SpriteBatch batch){
