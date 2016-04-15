@@ -155,7 +155,7 @@ float width = 5000;
         this.main = new Main(this, xStart, yStart, difficulty);
         this.projectileList = new ArrayList<Projectiles>();
         this.enemyList = new ArrayList<GameCharacter>();
-        this.enemyList.add(new ForestKnight(this, 350, 40, difficulty));
+        this.enemyList.add(new ForestKnight(this, 250, 40, difficulty));
         this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
         for(int i = 0; i <10; i++){
