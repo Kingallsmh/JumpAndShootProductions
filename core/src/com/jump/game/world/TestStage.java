@@ -39,7 +39,7 @@ float width = 5000;
 
     public TestStage(OrthographicCamera cam, int savePoint, int difficulty){
         
-        
+        this.sS = 1;
         cloud = new Texture("cloud1.png");
         sun = new Texture("sun.png");
         this.savePoint = savePoint;
@@ -61,91 +61,92 @@ float width = 5000;
         this.name = "Test";
         loserFont = new BitmapFont();
         
+        
         //The first tiles of the level
         for(int i = 0; i < 10; i++){
             if(i == 5){
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 2));
             }
             else{
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 0));
             }
             
         }
         //Corners for the step up
-        objectList.add(new Floor(10*16, 16, Tiles.TOPCORNER, true, 0));
-        objectList.add(new Floor(20*16, 16, Tiles.TOPCORNER, false, 0));
+        objectList.add(new Floor(sS, 10*16, 16, Tiles.TOPCORNER, true, 0));
+        objectList.add(new Floor(sS, 20*16, 16, Tiles.TOPCORNER, false, 0));
         for(int i = 11; i < 20; i++){
-            objectList.add(new Floor(i*16, 16, Tiles.GRASS2, false, 0));
+            objectList.add(new Floor(sS, i*16, 16, Tiles.GRASS2, false, 0));
         }
         for(int i = 10; i < 21; i++){       
             if(i == 10){
-                objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false, 1));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.UNDERGROUND, false, 1));
             }else{
-                objectList.add(new Floor(i*16, 0, Tiles.UNDERGROUND, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.UNDERGROUND, false, 0));
             }
             
         }
         //Wall on left side
         for(int i = 1; i < 15; i++){
-            objectList.add(new Floor(0, i*16, Tiles.DIRTWALL, false, 0));
+            objectList.add(new Floor(sS, 0, i*16, Tiles.DIRTWALL, false, 0));
         }
         
         for(int i = 21; i < 30; i++){
             if(i == 29){
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 2));
             }else{
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 0));
             }
         }
         
         for(int i = 38; i < 42; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 0));
         }
         int climb = 48;
         for(int i = 45; i < 50; i++){
             climb += 16;
-            objectList.add(new Floor(i*16, climb, Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, climb, Tiles.GRASS1, false, 0));
         }
         
         //Highest platform
         for(int i = 55; i < 70; i++){
             if(i == 55){
-                objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false, 1));
+                objectList.add(new Floor(sS, i*16, 176, Tiles.GRASS1, false, 1));
             }
             else{
-                objectList.add(new Floor(i*16, 176, Tiles.GRASS1, false, 0));
+                objectList.add(new Floor(sS, i*16, 176, Tiles.GRASS1, false, 0));
             }
             
         }
         
         for(int i = 78; i < 84; i++){
-            objectList.add(new Floor(i*16, 117, Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, 117, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 90; i < 96; i++){
-            objectList.add(new Floor(i*16, 59, Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, 59, Tiles.GRASS1, false, 0));
         }
         
         //Back to ground level with a floating platform
         for(int i = 105; i < 135; i++){
             if(i == 109){
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 2));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 2));
             }
             else if(i == 120){
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 3));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 3));
             }
             else{
-                objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 0));
             }
             
         }
         
         for(int i = 115; i < 125; i++){
-            objectList.add(new Floor(i*16, 64, Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, 64, Tiles.GRASS1, false, 0));
         }
         
         for(int i = 140; i <170 ; i++){
-            objectList.add(new Floor(i*16, 0, Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, 0, Tiles.GRASS1, false, 0));
         }
         
         

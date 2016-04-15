@@ -34,7 +34,7 @@ public class Floor extends Environment{
     
     int drawThing;
     
-    public Floor(float x, float y, Tiles imageChoice, boolean flipX, int drawThing){
+    public Floor(int spriteSheet , float x, float y, Tiles imageChoice, boolean flipX, int drawThing){
         this.drawThing = drawThing;
         this.x = x;
         this.y = y;
@@ -42,7 +42,15 @@ public class Floor extends Environment{
         this.isMoving = false;
         this.width = 16;
         this.height = 16;
-        this.testSheet = new Texture("ForestParts.png");
+        if(spriteSheet == 1){
+            this.testSheet = new Texture("ForestParts.png");
+        }
+        else if(spriteSheet == 2){
+            this.testSheet = new Texture("ForestParts2.png");
+        }
+        else if(spriteSheet == 3){
+            this.testSheet = new Texture("ForestParts3.png");
+        }
         this.bush = new Texture("bush.png");
         this.noselessTom = new Texture("tree2.png");
         this.tree = new Texture("tree.png");

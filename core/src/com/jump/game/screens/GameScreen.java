@@ -66,7 +66,16 @@ public class GameScreen implements Screen{
             newStage(test.difficulty);
         }
         
-        Gdx.gl.glClearColor(0.5f, 1, 1, 1);
+        if(test.sS == 1){
+            Gdx.gl.glClearColor(0.5f, 1, 1, 1);
+        }
+        else if(test.sS == 2){
+            Gdx.gl.glClearColor(1, 0.5f, 0.1f, 1);
+        }
+        else{
+            Gdx.gl.glClearColor(0.7f, 0, 0, 1);
+        }
+        
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         cam.update();
 	batch.setProjectionMatrix(cam.combined);

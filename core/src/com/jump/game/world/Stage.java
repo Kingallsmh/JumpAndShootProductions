@@ -28,6 +28,7 @@ public abstract class Stage {
     public int savePoint;
     float xStart, yStart;
     public int difficulty;
+    public int sS;
     
     public abstract void CheckpointReached();
     public abstract void CalcOnScreen();

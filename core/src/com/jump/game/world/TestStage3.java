@@ -32,12 +32,12 @@ import java.util.ArrayList;
 public class TestStage3 extends Stage {
     
     Camera camFuncs;
-BitmapFont loserFont;
-
+    BitmapFont loserFont;
 float width = 5000;
 
     public TestStage3(OrthographicCamera cam, int savePoint, int difficulty){
         
+        this.sS = 3;
         this.savePoint = savePoint;
         this.difficulty = difficulty;
         //Save points
@@ -60,67 +60,67 @@ float width = 5000;
         //The first tiles of the level
         for(int i = 0; i < 10; i++){
             if(i == 5){
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 2));
+                objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 2));
             }
             else{
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 0));
             }
             
         }
         //Corners for the step up
-        objectList.add(new Floor(10*16, 16, Floor.Tiles.TOPCORNER, true, 0));
-        objectList.add(new Floor(20*16, 16, Floor.Tiles.TOPCORNER, false, 0));
+        objectList.add(new Floor(sS, 10*16, 16, Floor.Tiles.TOPCORNER, true, 0));
+        objectList.add(new Floor(sS, 20*16, 16, Floor.Tiles.TOPCORNER, false, 0));
         for(int i = 11; i < 20; i++){
-            objectList.add(new Floor(i*16, 16, Floor.Tiles.GRASS2, false, 0));
+            objectList.add(new Floor(sS, i*16, 16, Floor.Tiles.GRASS2, false, 0));
         }
         for(int i = 10; i < 21; i++){       
             if(i == 10){
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.UNDERGROUND, false, 1));
+                objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.UNDERGROUND, false, 1));
             }else{
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.UNDERGROUND, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.UNDERGROUND, false, 0));
             }
             
         }
         //Wall on left side
         for(int i = 1; i < 15; i++){
-            objectList.add(new Floor(0, i*16, Floor.Tiles.DIRTWALL, false, 0));
+            objectList.add(new Floor(sS, 0, i*16, Floor.Tiles.DIRTWALL, false, 0));
         }
         
         for(int i = 21; i < 30; i++){
             if(i == 29){
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 2));
+                objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 2));
             }else{
-                objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 0));
+                objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 0));
             }
         }
         //stairs to middle
         int climb = 16;
         for(int i = 30; i < 35;i++){
             if(i == 33){
-             objectList.add(new Floor(i*16, climb + 70, Floor.Tiles.GRASS1, false, 2));
+             objectList.add(new Floor(sS, i*16, climb + 70, Floor.Tiles.GRASS1, false, 2));
             }
             
-            objectList.add(new Floor(i*16, climb, Floor.Tiles.GRASS1, false, 2));
+            objectList.add(new Floor(sS, i*16, climb, Floor.Tiles.GRASS1, false, 2));
             climb += 16;
         }
         //triple selection of death
         for(int i=37; i < 70;i++){
             if(i > 39){
-             objectList.add(new Floor(i*16, 100, Floor.Tiles.GRASS1, false, 2));
+             objectList.add(new Floor(sS, i*16, 100, Floor.Tiles.GRASS1, false, 2));
             }
-            objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 2));
-            objectList.add(new Floor(i*16, 200 , Floor.Tiles.GRASS1, false, 2));
+            objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 2));
+            objectList.add(new Floor(sS, i*16, 200 , Floor.Tiles.GRASS1, false, 2));
         }
         
         for(int i=0; i<201;i += 16){
-            objectList.add(new Floor(70*16, i, Floor.Tiles.GRASS1, false, 0));        
+            objectList.add(new Floor(sS, 70*16, i, Floor.Tiles.GRASS1, false, 0));        
         }
         
-        objectList.add(new Floor(83*16, 0, Floor.Tiles.GRASS1, false, 2)); 
+        objectList.add(new Floor(sS, 83*16, 0, Floor.Tiles.GRASS1, false, 2)); 
         
         
         for(int i=90; i < 95;i++){
-            objectList.add(new Floor(i*16, 0, Floor.Tiles.GRASS1, false, 0));
+            objectList.add(new Floor(sS, i*16, 0, Floor.Tiles.GRASS1, false, 0));
         }
          
         this.main = new Main(this, xStart, yStart, difficulty);
@@ -199,6 +199,9 @@ float width = 5000;
         for(int i = 0; i < enemyList.size(); i++){
             if(!camFuncs.IsOnScreen(enemyList.get(i).x)){
                 enemyList.get(i).pause = true;
+            }
+            else if(camFuncs.IsOnScreen(enemyList.get(i).x)){
+                enemyList.get(i).pause = false;
             }
         }
         
