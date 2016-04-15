@@ -131,8 +131,11 @@ float width = 5000;
         this.enemyList.add(new ForestKnight(this, 250, 40, difficulty));
         this.enemyList.add(new ForestKnight(this, 55*16, 20, difficulty));
         this.enemyList.add(new ForestKnight(this, 55*16, 120, difficulty));
-         this.enemyList.add(new ForestKnight(this, 55*16, 220, difficulty));
-         this.enemyList.add(new ForestKnight(this, 92*16, 18, difficulty));
+        this.enemyList.add(new ForestKnight(this, 55*16, 220, difficulty));
+        this.enemyList.add(new ForestKnight(this, 50*16, 20, difficulty));
+        this.enemyList.add(new ForestKnight(this, 50*16, 120, difficulty));
+        this.enemyList.add(new ForestKnight(this, 50*16, 220, difficulty));
+        this.enemyList.add(new ForestKnight(this, 92*16, 18, difficulty));
         this.enemyList.add(new Kibble(this, 100, 40, difficulty));
         
         this.projectileList.add(new SackFlame(30,60));
