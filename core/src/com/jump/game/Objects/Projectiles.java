@@ -37,7 +37,6 @@ public abstract class Projectiles{
     TextureRegion projectilePic;
     public boolean fromPlayer = false;
     public int damageDone = 33;
-    public int object = 0;
     
     public Projectiles(){
         spriteSheet = new Texture("ProjectilesSheet.png");

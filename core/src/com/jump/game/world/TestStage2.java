@@ -164,17 +164,10 @@ float width = 5000;
 
         
         
-        this.projectileList.add(new SackFlame(1, 30,60));
-        this.projectileList.add(new SackFlame(2, 96 * 16 ,18));
+        this.projectileList.add(new SackFlame(30,60));
     }
     
-    public void WinStage(SpriteBatch batch){
-        if(win){
-            loserFont.setColor(0, 0, 0, 1);
-            loserFont.draw(batch, "YOU WIN!!!!", camFuncs.cam.position.x, camFuncs.cam.position.y);
-            main.pause = true;
-        }
-    }
+    
     
     @Override
     public void CalculateCollisions(GameCharacter gChar) {
@@ -184,7 +177,7 @@ float width = 5000;
     @Override
     public void RenderStage(SpriteBatch batch, float time) {
         camFuncs.FollowPlayer(main, width);
-        WinStage(batch);
+        
         CheckpointReached();
         
         for (Environment objectList1 : objectList) {

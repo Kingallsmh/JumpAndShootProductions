@@ -35,8 +35,6 @@ public class GameScreen implements Screen{
     OrthographicCamera cam;
     Environment floor;
     Stage test;
-    int winTimer = 0;
-    int currentStage = 0;
 
     public GameScreen(SpriteBatch batch){
         //Using for testing and debugging
@@ -46,34 +44,14 @@ public class GameScreen implements Screen{
         this.batch = batch;
         this.cam = new OrthographicCamera();
         cam.setToOrtho(false, Configurations.cameraWidth, Configurations.cameraHeight);
-        test = new TestStage(cam, 0, 0);
+        test = new TestStage3(cam, 0, 0);
     }
     
-    public void NewStage(int difficulty, int stageNum)
+    public void newStage(int difficulty)
     {
         int save = test.savePoint;
         test = null;
-        switch(stageNum)
-        {
-            case 0:{test = new TestStage(cam, save, difficulty);break;}
-            case 1:{test = new TestStage2(cam, save, difficulty);break;}
-            case 2:{test = new TestStage3(cam, save, difficulty);break;}
-            default:{test = new TestStage(cam, save, difficulty);break;}
-        }
-    }
-    
-    
-    public void NextStage(int difficulty, int stageNum)
-    {
-        int save = 0;
-        test = null;
-        switch(stageNum)
-        {
-            case 0:{test = new TestStage(cam, save, difficulty);break;}
-            case 1:{test = new TestStage2(cam, save, difficulty);break;}
-            case 2:{test = new TestStage3(cam, save, difficulty);break;}
-            default:{test = new TestStage(cam, save, difficulty);break;}
-        }
+        test = new TestStage3(cam, save, difficulty);
     }
     
     @Override
@@ -85,7 +63,7 @@ public class GameScreen implements Screen{
         
         if(test.stageOver)
         {
-            NewStage(test.difficulty, currentStage);
+            newStage(test.difficulty);
         }
         
         if(test.sS == 1){
@@ -97,8 +75,6 @@ public class GameScreen implements Screen{
         else{
             Gdx.gl.glClearColor(0.7f, 0, 0, 1);
         }
-            WinStage();
-
         
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         cam.update();

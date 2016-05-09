@@ -45,7 +45,7 @@ float width = 5000;
         this.savePoint = savePoint;
         this.difficulty = difficulty;
         //Save points
-        switch (this.savePoint){
+        switch (savePoint){
             case 0: 
                 this.xStart = 30;
                 this.yStart = 24;
@@ -168,8 +168,7 @@ float width = 5000;
         this.enemyList.add(new Kibble(this, 1750, 20, difficulty));
         this.enemyList.add(new Buggith(this, 1841, 20, difficulty));
         
-        this.projectileList.add(new SackFlame(1, 100,60));
-        this.projectileList.add(new SackFlame(2, 2487, 30));
+        this.projectileList.add(new SackFlame(100,60));
     }
     
     
@@ -190,7 +189,7 @@ float width = 5000;
         camFuncs.FollowPlayer(main, width);
         
         CheckpointReached();
-        WinStage(batch);
+        
         for (Environment objectList1 : objectList) {
             objectList1.RenderBackground(batch);
         }
@@ -236,14 +235,6 @@ float width = 5000;
        loserFont.draw(batch, "YOU LOSE", camFuncs.cam.position.x, camFuncs.cam.position.y);
        main.pause = true;
     }
-    
-    public void WinStage(SpriteBatch batch){
-        if(win){
-            loserFont.setColor(0, 0, 0, 1);
-            loserFont.draw(batch, "YOU WIN!!!!", camFuncs.cam.position.x, camFuncs.cam.position.y);
-            main.pause = true;
-        }
-    }
 
     @Override
     public void CalcOnScreen() {
@@ -258,12 +249,7 @@ float width = 5000;
         
         for(int i = 0; i < projectileList.size(); i++){
             if(!camFuncs.IsOnScreen(projectileList.get(i).hitbox.x)){
-                if(projectileList.get(i).object == 0){
-                    projectileList.remove(projectileList.get(i));
-                }
-                else{
-                    //DO NOTHING
-                }
+                projectileList.remove(projectileList.get(i));
             }
         }
     }

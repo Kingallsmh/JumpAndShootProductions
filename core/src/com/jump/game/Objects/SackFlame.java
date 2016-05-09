@@ -17,7 +17,7 @@ import com.jump.game.entities.GameCharacter;
  */
 public class SackFlame extends Projectiles{
     
-    public SackFlame(int object , int x, int y){//float xVel, float yVel, boolean facingLeft){
+    public SackFlame(int x, int y){//float xVel, float yVel, boolean facingLeft){
         //if(facingLeft){
         //    this.xVel = 0;//-xVel;
         //    angle = 0;
@@ -36,16 +36,10 @@ public class SackFlame extends Projectiles{
         xAdjust = 12;
         yAdjust = 10;
         hitbox = new Rectangle(xAdjust, yAdjust, 8, 9);
-        this.object = object;
+        
         s = 24;
-        if(object == 1){
-            spriteSheet = new Texture("sackFlame.png");
-            projectilePic = new TextureRegion(spriteSheet, 0, 0, s, s);
-        }
-        else{
-            spriteSheet = new Texture("Princess.png");
-            projectilePic = new TextureRegion(spriteSheet, 0, 0, 17, 36);
-        }
+        spriteSheet = new Texture("sackFlame.png");
+        projectilePic = new TextureRegion(spriteSheet, 0, 0, s, s);
     }
 
     @Override
